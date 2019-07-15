@@ -14,7 +14,6 @@ chai.use(chaiHttp);
 let tokenUser;
 let tokenAdmin;
 
-
 describe('TESTING THE USERS ENDPOINTS', () => {
 
   it('should return error empty registration form', (done) => {
@@ -254,7 +253,6 @@ describe('TESTING THE USERS ENDPOINTS', () => {
 
 });
 
-
 describe('TESTING THE BUSES ENDPOINTS', () => {
 
   it('Admin CAN create A BUS', (done) => {
@@ -341,7 +339,6 @@ describe('TESTING THE BUSES ENDPOINTS', () => {
 
 });
 
-
 describe('TESTING THE TRIPS ENDPOINTS', () => {
 
   it('Admin can create a trip', (done) => {
@@ -390,7 +387,7 @@ describe('TESTING THE TRIPS ENDPOINTS', () => {
       });
   });
 
-  it(' cannot create trip for non existing bus', (done) => {
+  it('cannot create trip for non existing bus', (done) => {
 
     const trip = {
       bus_id: 99, // since we don't have 9 yet
@@ -413,5 +410,56 @@ describe('TESTING THE TRIPS ENDPOINTS', () => {
       });
   });
 
-});
+  it('can get all trips', (done) => {
 
+    const cValue = "token=" + tokenUser;
+
+    chai.request(server)
+      .get('/api/v1/trips')
+      .set('content-type', 'application/x-www-form-urlencoded')
+      .set('Cookie', cValue)
+      .end((err, res) => {
+        res.should.have.status(200);
+        done();
+      });
+  });
+
+  it('can get all trips based on origin', (done) => {
+
+    const filter = {
+      origin: 'Lagos',
+    };
+
+    const cValue = "token=" + tokenUser;
+
+    chai.request(server)
+      .get('/api/v1/trips')
+      .set('content-type', 'application/x-www-form-urlencoded')
+      .set('Cookie', cValue)
+      .query(filter)
+      .end((err, res) => {
+        res.should.have.status(200);
+        done();
+      });
+  });
+
+  it('can get all trips based on destination', (done) => {
+
+    const filter = {
+      destination: 'Uyo',
+    };
+
+    const cValue = "token=" + tokenAdmin;
+
+    chai.request(server)
+      .get('/api/v1/trips')
+      .set('content-type', 'application/x-www-form-urlencoded')
+      .set('Cookie', cValue)
+      .query(filter)
+      .end((err, res) => {
+        res.should.have.status(200);
+        done();
+      });
+  });
+
+});

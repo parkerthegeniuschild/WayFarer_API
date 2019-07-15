@@ -58,9 +58,29 @@ const createDummyBuses = () => {
     .catch(err => logger.error(err.stack));
 };
 
+const createDummyTrips = () => {
+  const query = 'INSERT INTO trips(bus_id, origin, destination, trip_date, fare) '
+    + "VALUES ('1', 'Lagos', 'Abuja', '2019-07-30', '3547.29'),"
+    + " ('2', 'Abuja', 'Lagos', '2019-07-22', '6271.19'), "
+    + "('3', 'Ekiti', 'Calabar', '2019-07-10', '3000.00'), "
+    + "('2', 'Benin', 'Uyo', '2019-08-30', '9811.43')";
+
+  (async () => {
+    const client = await pool.connect();
+    try {
+      client.query(query);
+      logger.info('Inserted dummy trips successfully');
+    } finally {
+      client.release();
+    }
+  })()
+    .catch(err => logger.error(err.stack));
+};
+
 const seedTables = () => {
   createDummyUsers();
   setTimeout(createDummyBuses, 500);
+  setTimeout(createDummyTrips, 1000);
 };
 
 module.exports = {

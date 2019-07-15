@@ -13,4 +13,14 @@ export default {
     }
   }),
 
+  /* Get all trips */
+  getAll: filters => new Promise((resolve, reject) => {
+    try {
+      const result = db.getAllTrips(filters);
+      resolve(result);
+    } catch (err) {
+      reject(err);
+    }
+  }),
+
 };

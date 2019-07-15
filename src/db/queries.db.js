@@ -207,6 +207,55 @@ const DBQueries = {
     }
   },
 
+  /**
+   * Get all trips
+   */
+  async getAllTrips(filters) {
+    const { status, origin, destination } = filters;
+
+    let text;
+    let values;
+
+    if (origin) {
+      text = 'SELECT * FROM trips WHERE status = $1 AND origin = $2 LIMIT 50';
+      values = [status, origin];
+    } else if (destination) {
+      text = 'SELECT * FROM trips WHERE status = $1 AND destination = $2 LIMIT 50';
+      values = [status, destination];
+    } else {
+      text = 'SELECT * FROM trips WHERE status = $1 LIMIT 50';
+      values = [status];
+    }
+
+    try {
+      const res = await pool.query(text, values);
+
+      if (res.rowCount < 1) {
+        return false;
+      }
+
+      const trips = [];
+
+      for (let i = 0; i < res.rowCount; i += 1) {
+        const row = res.rows[i];
+
+        trips[i] = {
+          trip_id: row.id,
+          bus_id: row.bus_id,
+          origin: row.origin,
+          destination: row.destination,
+          fare: row.fare,
+          trip_date: row.trip_date,
+          status: row.status,
+        };
+      }
+      return trips;
+    } catch (err) {
+      logger.error(err.stack);
+      return err;
+    }
+  },
+
 };
 
 export default DBQueries;

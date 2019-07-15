@@ -1,5 +1,5 @@
 import models from '../models/index.model';
-// import Char from '../utilities/charCaseHelpers';
+import Char from '../utilities/charCaseHelpers';
 import logger from '../logs/winston';
 
 const { Trips } = models;
@@ -39,5 +39,39 @@ export default {
       })
       .catch(err => logger.error(err));
   },
+
+  findAll: async (req, res) => {
+    const filters = {
+      origin: Char.upperCaseFirst(req.query.origin),
+      destination: Char.upperCaseFirst(req.query.destination),
+      status: 'active',
+    };
+
+    await Trips.getAll(filters)
+      .then((result) => {
+        if (!result) {
+          return res.status(200)
+            .json({
+              status: 'success',
+              data: 'No trips found',
+            });
+        }
+        return res.status(200)
+          .json({
+            status: 'success',
+            data: result,
+          });
+      })
+      .catch((err) => {
+        logger.error(err);
+        return res.status(500).json({
+          status: 'error',
+          error: {
+            message: err,
+          },
+        });
+      });
+  },
+
 
 };
