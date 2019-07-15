@@ -56,4 +56,28 @@ export default {
     return next();
   },
 
+  trip: (req, res, next) => {
+    const errors = [];
+
+    const {
+      bus_id, origin, destination, trip_date, fare,
+    } = req.body;
+
+    if (req.path.includes('trips')) {
+      errors.push(...checkPatternedFields('Bus ID', bus_id, numberRegex));
+      errors.push(...checkForEmptyFields('Origin', origin));
+      errors.push(...checkForEmptyFields('Destination', destination));
+      errors.push(...checkForEmptyFields('Trip Date', trip_date));
+      errors.push(...checkForEmptyFields('Fare', fare));
+    }
+
+    if (errors.length) {
+      return res.status(400).json({
+        status: 'error',
+        message: errors,
+      });
+    }
+    return next();
+  },
+
 };
