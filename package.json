@@ -50,6 +50,7 @@
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.9.1",
     "object-rename-keys": "^1.2.1",
+    "path": "^0.12.7",
     "pg": "^7.11.0",
     "promise": "^8.0.3",
     "request": "^2.88.0",

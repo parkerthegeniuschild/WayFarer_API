@@ -47,7 +47,7 @@ export default {
         return res.status(201)
           .json({
             status: 'success',
-            result,
+            data: result,
           });
       })
       .catch();
