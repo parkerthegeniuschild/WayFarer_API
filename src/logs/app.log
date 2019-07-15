@@ -1,0 +1,84 @@
+{"message":"Connected to PostgreSQL successfully","level":"info"}
+{"message":"Table 'users' dropped successfully","level":"info"}
+{"message":"Connected to PostgreSQL successfully","level":"info"}
+{"message":"Table 'bookings' dropped successfully","level":"info"}
+{"message":"Table 'users' dropped successfully","level":"info"}
+{"message":"Table 'trips' dropped successfully","level":"info"}
+{"message":"Table 'buses' dropped successfully","level":"info"}
+{"message":"Connected to PostgreSQL successfully","level":"info"}
+{"message":"Table 'users' created successfully","level":"info"}
+{"message":"Table 'buses' created successfully","level":"info"}
+{"message":"Table 'trips' created successfully","level":"info"}
+{"message":"Table 'bookings' created successfully","level":"info"}
+{"message":"500 - checkForEmptyFields is not a function - /api/v1/auth/signup - POST - ::1","level":"error"}
+{"message":"::1 - - [15/Jul/2019:10:34:58 +0000] \"POST /api/v1/auth/signup HTTP/1.1\" 500 1462 \"-\" \"PostmanRuntime/7.15.0\"\n","level":"info"}
+{"error":{"code":"MODULE_NOT_FOUND"},"level":"error","message":"uncaughtException: Cannot find module 'ejs'\nError: Cannot find module 'ejs'\n    at Function.Module._resolveFilename (internal/modules/cjs/loader.js:582:15)\n    at Function.Module._load (internal/modules/cjs/loader.js:508:25)\n    at Module.require (internal/modules/cjs/loader.js:637:17)\n    at require (internal/modules/cjs/helpers.js:22:18)\n    at Object.require (/home/linux/Desktop/FINAL VERSION/WayFarer_API/src/app.js:25:20)\n    at Module._compile (internal/modules/cjs/loader.js:701:30)\n    at Module._compile (/home/linux/Desktop/FINAL VERSION/WayFarer_API/node_modules/pirates/lib/index.js:99:24)\n    at Module._extensions..js (internal/modules/cjs/loader.js:712:10)\n    at Object.newLoader [as .js] (/home/linux/Desktop/FINAL VERSION/WayFarer_API/node_modules/pirates/lib/index.js:104:7)\n    at Module.load (internal/modules/cjs/loader.js:600:32)","stack":"Error: Cannot find module 'ejs'\n    at Function.Module._resolveFilename (internal/modules/cjs/loader.js:582:15)\n    at Function.Module._load (internal/modules/cjs/loader.js:508:25)\n    at Module.require (internal/modules/cjs/loader.js:637:17)\n    at require (internal/modules/cjs/helpers.js:22:18)\n    at Object.require (/home/linux/Desktop/FINAL VERSION/WayFarer_API/src/app.js:25:20)\n    at Module._compile (internal/modules/cjs/loader.js:701:30)\n    at Module._compile (/home/linux/Desktop/FINAL VERSION/WayFarer_API/node_modules/pirates/lib/index.js:99:24)\n    at Module._extensions..js (internal/modules/cjs/loader.js:712:10)\n    at Object.newLoader [as .js] (/home/linux/Desktop/FINAL VERSION/WayFarer_API/node_modules/pirates/lib/index.js:104:7)\n    at Module.load (internal/modules/cjs/loader.js:600:32)","exception":true,"date":"Mon Jul 15 2019 11:36:32 GMT+0100 (British Summer Time)","process":{"pid":1929,"uid":1000,"gid":1000,"cwd":"/home/linux/Desktop/FINAL VERSION/WayFarer_API","execPath":"/home/linux/.nvm/versions/node/v10.15.3/bin/node","version":"v10.15.3","argv":["node","/home/linux/Desktop/FINAL VERSION/WayFarer_API/src/app.js"],"memoryUsage":{"rss":72110080,"heapTotal":61759488,"heapUsed":27000048,"external":118434}},"os":{"loadavg":[2.859375,2.23193359375,1.83056640625],"uptime":349314},"trace":[{"column":15,"file":"internal/modules/cjs/loader.js","function":"Module._resolveFilename","line":582,"method":"_resolveFilename","native":false},{"column":25,"file":"internal/modules/cjs/loader.js","function":"Module._load","line":508,"method":"_load","native":false},{"column":17,"file":"internal/modules/cjs/loader.js","function":"Module.require","line":637,"method":"require","native":false},{"column":18,"file":"internal/modules/cjs/helpers.js","function":"require","line":22,"method":null,"native":false},{"column":20,"file":"/home/linux/Desktop/FINAL VERSION/WayFarer_API/src/app.js","function":"Object.require","line":25,"method":"require","native":false},{"column":30,"file":"internal/modules/cjs/loader.js","function":"Module._compile","line":701,"method":"_compile","native":false},{"column":24,"file":"/home/linux/Desktop/FINAL VERSION/WayFarer_API/node_modules/pirates/lib/index.js","function":"Module._compile","line":99,"method":"_compile","native":false},{"column":10,"file":"internal/modules/cjs/loader.js","function":"Module._extensions..js","line":712,"method":".js","native":false},{"column":7,"file":"/home/linux/Desktop/FINAL VERSION/WayFarer_API/node_modules/pirates/lib/index.js","function":"Object.newLoader [as .js]","line":104,"method":"js]","native":false},{"column":32,"file":"internal/modules/cjs/loader.js","function":"Module.load","line":600,"method":"load","native":false}]}
+{"message":"500 - checkForEmptyFields is not a function - /api/v1/auth/signup - POST - ::1","level":"error"}
+{"message":"::1 - - [15/Jul/2019:10:38:50 +0000] \"POST /api/v1/auth/signup HTTP/1.1\" 500 1457 \"-\" \"PostmanRuntime/7.15.0\"\n","level":"info"}
+{"message":"::1 - - [15/Jul/2019:10:41:34 +0000] \"GET / HTTP/1.1\" 200 39 \"-\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [15/Jul/2019:10:41:35 +0000] \"GET /favicon.ico HTTP/1.1\" 404 150 \"http://localhost:3000/\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36\"\n","level":"info"}
+{"message":"Connected to PostgreSQL ... OK! \n","level":"info"}
+{"message":"::1 - - [15/Jul/2019:10:41:45 +0000] \"POST /api/v1/auth/signup HTTP/1.1\" 201 426 \"-\" \"PostmanRuntime/7.15.0\"\n","level":"info"}
+{"message":"Connected to PostgreSQL successfully","level":"info"}
+{"message":"Table 'bookings' dropped successfully","level":"info"}
+{"message":"Table 'users' dropped successfully","level":"info"}
+{"message":"Table 'trips' dropped successfully","level":"info"}
+{"message":"Table 'buses' dropped successfully","level":"info"}
+{"message":"Connected to PostgreSQL successfully","level":"info"}
+{"message":"Table 'users' created successfully","level":"info"}
+{"message":"Table 'buses' created successfully","level":"info"}
+{"message":"Table 'trips' created successfully","level":"info"}
+{"message":"Table 'bookings' created successfully","level":"info"}
+{"message":"Connected to PostgreSQL ... OK! \n","level":"info"}
+{"message":"::1 - - [15/Jul/2019:10:43:42 +0000] \"POST /api/v1/auth/signup HTTP/1.1\" 201 424 \"-\" \"PostmanRuntime/7.15.0\"\n","level":"info"}
+{"message":"Connected to PostgreSQL successfully","level":"info"}
+{"message":"Table 'bookings' dropped successfully","level":"info"}
+{"message":"Table 'users' dropped successfully","level":"info"}
+{"message":"Table 'trips' dropped successfully","level":"info"}
+{"message":"Table 'buses' dropped successfully","level":"info"}
+{"message":"Connected to PostgreSQL successfully","level":"info"}
+{"message":"Table 'users' created successfully","level":"info"}
+{"message":"Table 'buses' created successfully","level":"info"}
+{"message":"Table 'trips' created successfully","level":"info"}
+{"message":"Table 'bookings' created successfully","level":"info"}
+{"message":"Inserted dummy users successfully","level":"info"}
+{"message":"::ffff:127.0.0.1 - - [15/Jul/2019:10:45:58 +0000] \"POST /api/v1/auth/signup HTTP/1.1\" 400 126 \"-\" \"node-superagent/3.8.3\"\n","level":"info"}
+{"message":"::ffff:127.0.0.1 - - [15/Jul/2019:10:45:58 +0000] \"POST /api/v1/auth/signup HTTP/1.1\" 400 53 \"-\" \"node-superagent/3.8.3\"\n","level":"info"}
+{"message":"::ffff:127.0.0.1 - - [15/Jul/2019:10:45:58 +0000] \"POST /api/v1/auth/signup HTTP/1.1\" 400 52 \"-\" \"node-superagent/3.8.3\"\n","level":"info"}
+{"message":"::ffff:127.0.0.1 - - [15/Jul/2019:10:45:58 +0000] \"POST /api/v1/auth/signup HTTP/1.1\" 400 50 \"-\" \"node-superagent/3.8.3\"\n","level":"info"}
+{"message":"Connected to PostgreSQL ... OK! \n","level":"info"}
+{"message":"::ffff:127.0.0.1 - - [15/Jul/2019:10:45:59 +0000] \"POST /api/v1/auth/signup HTTP/1.1\" 201 438 \"-\" \"node-superagent/3.8.3\"\n","level":"info"}
+{"message":"::ffff:127.0.0.1 - - [15/Jul/2019:10:45:59 +0000] \"POST /api/v1/auth/signup HTTP/1.1\" 201 449 \"-\" \"node-superagent/3.8.3\"\n","level":"info"}
+{"message":"error: duplicate key value violates unique constraint \"users_email_key\"\n    at Connection.parseE (/home/linux/Desktop/FINAL VERSION/WayFarer_API/node_modules/pg/lib/connection.js:602:11)\n    at Connection.parseMessage (/home/linux/Desktop/FINAL VERSION/WayFarer_API/node_modules/pg/lib/connection.js:399:19)\n    at Socket.<anonymous> (/home/linux/Desktop/FINAL VERSION/WayFarer_API/node_modules/pg/lib/connection.js:121:22)\n    at Socket.emit (events.js:189:13)\n    at Socket.EventEmitter.emit (domain.js:441:20)\n    at addChunk (_stream_readable.js:284:12)\n    at readableAddChunk (_stream_readable.js:265:11)\n    at Socket.Readable.push (_stream_readable.js:220:10)\n    at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)","level":"error"}
+{"message":"::ffff:127.0.0.1 - - [15/Jul/2019:10:45:59 +0000] \"POST /api/v1/auth/signup HTTP/1.1\" 403 93 \"-\" \"node-superagent/3.8.3\"\n","level":"info"}
+{"message":"Connected to PostgreSQL successfully","level":"info"}
+{"message":"Table 'bookings' dropped successfully","level":"info"}
+{"message":"Table 'users' dropped successfully","level":"info"}
+{"message":"Table 'trips' dropped successfully","level":"info"}
+{"message":"Table 'buses' dropped successfully","level":"info"}
+{"message":"Connected to PostgreSQL successfully","level":"info"}
+{"message":"Table 'users' created successfully","level":"info"}
+{"message":"Table 'buses' created successfully","level":"info"}
+{"message":"Table 'trips' created successfully","level":"info"}
+{"message":"Table 'bookings' created successfully","level":"info"}
+{"message":"Inserted dummy users successfully","level":"info"}
+{"message":"Connected to PostgreSQL successfully","level":"info"}
+{"message":"Table 'bookings' dropped successfully","level":"info"}
+{"message":"Table 'users' dropped successfully","level":"info"}
+{"message":"Table 'trips' dropped successfully","level":"info"}
+{"message":"Table 'buses' dropped successfully","level":"info"}
+{"message":"Connected to PostgreSQL successfully","level":"info"}
+{"message":"Table 'users' created successfully","level":"info"}
+{"message":"Table 'buses' created successfully","level":"info"}
+{"message":"Table 'trips' created successfully","level":"info"}
+{"message":"Table 'bookings' created successfully","level":"info"}
+{"message":"Inserted dummy users successfully","level":"info"}
+{"message":"::ffff:127.0.0.1 - - [15/Jul/2019:10:48:09 +0000] \"POST /api/v1/auth/signup HTTP/1.1\" 400 126 \"-\" \"node-superagent/3.8.3\"\n","level":"info"}
+{"message":"::ffff:127.0.0.1 - - [15/Jul/2019:10:48:09 +0000] \"POST /api/v1/auth/signup HTTP/1.1\" 400 53 \"-\" \"node-superagent/3.8.3\"\n","level":"info"}
+{"message":"::ffff:127.0.0.1 - - [15/Jul/2019:10:48:09 +0000] \"POST /api/v1/auth/signup HTTP/1.1\" 400 52 \"-\" \"node-superagent/3.8.3\"\n","level":"info"}
+{"message":"::ffff:127.0.0.1 - - [15/Jul/2019:10:48:09 +0000] \"POST /api/v1/auth/signup HTTP/1.1\" 400 50 \"-\" \"node-superagent/3.8.3\"\n","level":"info"}
+{"message":"Connected to PostgreSQL ... OK! \n","level":"info"}
+{"message":"::ffff:127.0.0.1 - - [15/Jul/2019:10:48:10 +0000] \"POST /api/v1/auth/signup HTTP/1.1\" 201 438 \"-\" \"node-superagent/3.8.3\"\n","level":"info"}
+{"message":"::ffff:127.0.0.1 - - [15/Jul/2019:10:48:10 +0000] \"POST /api/v1/auth/signup HTTP/1.1\" 201 449 \"-\" \"node-superagent/3.8.3\"\n","level":"info"}
+{"message":"error: duplicate key value violates unique constraint \"users_email_key\"\n    at Connection.parseE (/home/linux/Desktop/FINAL VERSION/WayFarer_API/node_modules/pg/lib/connection.js:602:11)\n    at Connection.parseMessage (/home/linux/Desktop/FINAL VERSION/WayFarer_API/node_modules/pg/lib/connection.js:399:19)\n    at Socket.<anonymous> (/home/linux/Desktop/FINAL VERSION/WayFarer_API/node_modules/pg/lib/connection.js:121:22)\n    at Socket.emit (events.js:189:13)\n    at Socket.EventEmitter.emit (domain.js:441:20)\n    at addChunk (_stream_readable.js:284:12)\n    at readableAddChunk (_stream_readable.js:265:11)\n    at Socket.Readable.push (_stream_readable.js:220:10)\n    at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)","level":"error"}
+{"message":"::ffff:127.0.0.1 - - [15/Jul/2019:10:48:10 +0000] \"POST /api/v1/auth/signup HTTP/1.1\" 403 93 \"-\" \"node-superagent/3.8.3\"\n","level":"info"}
