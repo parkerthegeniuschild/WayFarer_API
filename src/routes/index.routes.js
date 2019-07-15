@@ -5,6 +5,7 @@ import UserController from '../controllers/user.controller';
 import BusController from '../controllers/bus.controller';
 import Authenticator from '../middlewares/authenticator';
 import TripController from '../controllers/trip.controller';
+import BookingController from '../controllers/booking.controller';
 
 const router = express.Router();
 
@@ -23,6 +24,9 @@ router.post('/trips', Authenticator.checkToken, Authenticator.isAdmin,
 router.get('/trips', TripController.findAll);
 router.patch('/trips/:tripId', Authenticator.checkToken,
   Authenticator.isAdmin, Validator.checkId, TripController.cancel);
+
+// bookings
+router.post('/bookings', Authenticator.checkToken, Validator.booking, BookingController.create);
 
 
 export default router;

@@ -109,4 +109,27 @@ export default {
     return next();
   },
 
+  booking: (req, res, next) => {
+    const errors = [];
+
+    const { trip_id, seat_number } = req.body;
+
+    if (req.path.includes('bookings')) {
+      if (typeof seat_number !== 'undefined') {
+        errors.push(...checkPatternedFields('Seat Number', seat_number, numberRegex));
+      }
+
+      errors.push(...checkPatternedFields('Trip ID', trip_id, numberRegex));
+    }
+
+    if (errors.length) {
+      return res.status(400).json({
+        status: 'error',
+        error: errors,
+      });
+    }
+
+    return next();
+  },
+
 };

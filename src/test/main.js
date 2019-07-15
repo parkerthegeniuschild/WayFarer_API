@@ -523,3 +523,75 @@ describe('TESTING THE TRIPS ENDPOINTS', () => {
   });
 
 });
+
+describe('TESTING THE BOOKINGS ENDPOINTS', () => {
+
+  it('User can create a booking', (done) => {
+
+    const booking = {
+      trip_id: 3,
+    };
+
+    const cValue = "token=" + tokenUser;
+
+    chai.request(server)
+      .post('/api/v1/bookings')
+      .set('content-type', 'application/x-www-form-urlencoded')
+      .set('Cookie', cValue)
+      .send(booking)
+      .end((err, res) => {
+        expect(res.status).to.equal(201);
+        expect(res.status).to.be.a('number');
+        // expect(body).to.be.an('object');
+        // expect(body.data).to.be.have.property('booking_id');
+        // expect(body.data).to.be.have.property('user_id');
+        // expect(body.data).to.be.have.property('bus_id');
+        // expect(body.data).to.be.have.property('trip_date');
+        // expect(body.data).to.be.have.property('seat_number');
+        // expect(body.data).to.be.have.property('first_name');
+        // expect(body.data).to.be.have.property('last_name');
+        // expect(body.data).to.be.have.property('email');
+        done();
+      });
+  });
+
+  it('User cannot create a booking for a non-existent trip', (done) => {
+
+    const booking = {
+      trip_id: 400,  // assuming no 400
+    };
+
+    const cValue = "token=" + tokenUser;
+
+    chai.request(server)
+      .post('/api/v1/bookings')
+      .set('content-type', 'application/x-www-form-urlencoded')
+      .set('Cookie', cValue)
+      .send(booking)
+      .end((err, res) => {
+        res.should.have.status(400);
+        done();
+      });
+  });
+
+  it('return error on invalid booking params', (done) => {
+
+    const booking = {
+      trip_id: '',
+      seat_number: '',
+    };
+
+    const cValue = "token=" + tokenUser;
+
+    chai.request(server)
+      .post('/api/v1/bookings')
+      .set('content-type', 'application/x-www-form-urlencoded')
+      .set('Cookie', cValue)
+      .send(booking)
+      .end((err, res) => {
+        res.should.have.status(400);
+        done();
+      });
+  });
+
+});
