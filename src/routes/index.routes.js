@@ -14,6 +14,7 @@ router.post('/auth/signin', Validator.auth, UserController.login);
 // buses
 router.post('/buses', Authenticator.checkToken,
   Authenticator.isAdmin, Validator.bus, BusController.create);
+router.get('/buses', Authenticator.checkToken, BusController.findAll);
 
 
 export default router;
