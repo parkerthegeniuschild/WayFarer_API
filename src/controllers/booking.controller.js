@@ -53,4 +53,30 @@ export default {
       .catch();
   },
 
+  /* get all bookings */
+  findAll: async (req, res) => {
+    const { user_id, is_admin, token } = req.body;
+
+    const user = {
+      user_id,
+      is_admin,
+      token,
+    };
+
+    await Bookings.getAll(user)
+      .then((result) => {
+        if (!result) {
+          return res.status(200).json({
+            status: 'success',
+            error: 'No bookings found',
+          });
+        }
+        return res.status(200).json({
+          status: 'success',
+          data: result,
+        });
+      })
+      .catch(err => logger.error(err));
+  },
+
 };
