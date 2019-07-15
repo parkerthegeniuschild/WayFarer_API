@@ -159,4 +159,97 @@ describe('TESTING THE USERS ENDPOINTS', () => {
       });
   });
 
+  it('should return error on empty login form', (done) => {
+    const newUser = {};
+
+    chai.request(server)
+      .post('/api/v1/auth/signin')
+      .set('content-type', 'application/x-www-form-urlencoded')
+      .send(newUser)
+      .end((err, res) => {
+        res.should.have.status(400);
+        done();
+      });
+  });
+
+  it('should not login without an email', (done) => {
+    const user = {
+      email: '',
+      password: 'P@ssw0rd',
+    };
+
+    chai.request(server)
+      .post('/api/v1/auth/signin')
+      .set('content-type', 'application/x-www-form-urlencoded')
+      .send(user)
+      .end((err, res) => {
+        res.should.have.status(400);
+        done();
+      });
+  });
+
+  it('should not login without a password', (done) => {
+    const newUser = {
+      email: 'myfirstemail@yahoo.com',
+      password: '',
+    };
+
+    chai.request(server)
+      .post('/api/v1/auth/signin')
+      .set('content-type', 'application/x-www-form-urlencoded')
+      .send(newUser)
+      .end((err, res) => {
+        res.should.have.status(400);
+        done();
+      });
+  });
+
+  it('should not login unregistered user', (done) => {
+    const user = {
+      email: 'unregisteremail@yahoo.com',
+      password: 'P@ssw0rd',
+    };
+
+    chai.request(server)
+      .post('/api/v1/auth/signin')
+      .set('content-type', 'application/x-www-form-urlencoded')
+      .send(user)
+      .end((err, res) => {
+        res.should.have.status(401);
+        done();
+      });
+  });
+
+  it('should NOT login with wrong password', (done) => {
+    const user = {
+      email: 'myfirstemail@yahoo.com',
+      password: 'P@ssw0rds'
+    };
+
+    chai.request(server)
+      .post('/api/v1/auth/signin')
+      .set('content-type', 'application/x-www-form-urlencoded')
+      .send(user)
+      .end((err, res) => {
+        res.should.have.status(401);
+        done();
+      });
+  });
+
+  it('should login user on correct email and password', (done) => {
+    const user = {
+      email: 'johndoe@gmail.com',
+      password: 'P@ssw0rd'
+    };
+
+    chai.request(server)
+      .post('/api/v1/auth/signin')
+      .set('content-type', 'application/x-www-form-urlencoded')
+      .send(user)
+      .end((err, res) => {
+        res.should.have.status(200);
+        done();
+      });
+  });
+
 });

@@ -1,6 +1,6 @@
 import { config } from 'dotenv';
 import { Pool } from 'pg';
-// import bcrypt from 'bcrypt';
+import bcrypt from 'bcrypt';
 import logger from '../logs/winston';
 
 config();
@@ -67,6 +67,44 @@ const DBQueries = {
     } catch (err) {
       logger.error(err.stack);
       return err;
+    }
+  },
+
+
+  /**
+   * Login a user
+   */
+  async loginUser(user) {
+    const { email, password } = user;
+
+    const text = 'SELECT * FROM users WHERE email = $1';
+    const value = [email];
+
+    try {
+      const res = await pool.query(text, value);
+
+      if (res.rowCount < 1) {
+        return false;
+      }
+
+      if (!bcrypt.compareSync(password, res.rows[0].password)) {
+        return 'wrong password';
+      }
+
+      const row = res.rows[0];
+
+      return {
+        user_id: row.id,
+        first_name: row.first_name,
+        last_name: row.last_name,
+        email: row.email,
+        is_admin: row.is_admin,
+        created_on: row.created_on,
+        modified_on: row.modified_on,
+      };
+    } catch (err) {
+      logger.error(err.stack);
+      return 'error500';
     }
   },
 
