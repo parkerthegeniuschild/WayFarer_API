@@ -253,3 +253,77 @@ describe('TESTING THE USERS ENDPOINTS', () => {
   });
 
 });
+
+
+describe('TESTING THE BUSES ENDPOINTS', () => {
+
+  it('Admin CAN create A BUS', (done) => {
+
+    const bus = {
+      number_plate: 'FST 78 KJA',
+      manufacturer: 'Nissan',
+      model: 'Roadstar',
+      year: 2008,
+      capacity: 45
+    };
+
+    const cValue = "token=" + tokenAdmin;
+
+    chai.request(server)
+      .post('/api/v1/buses')
+      .set('content-type', 'application/x-www-form-urlencoded')
+      .set('Cookie', cValue)
+      .send(bus)
+      .end((err, res) => {
+        res.should.have.status(201);
+        done();
+      });
+  });
+
+  it('user cannot create A BUS', (done) => {
+
+    const bus = {
+      number_plate: 'FST 78 KJA',
+      manufacturer: 'Nissan',
+      model: 'Roadstar',
+      year: 2008,
+      capacity: 45
+    };
+
+    const cValue = "token=" + tokenUser;
+
+    chai.request(server)
+      .post('/api/v1/buses')
+      .set('content-type', 'application/x-www-form-urlencoded')
+      .set('Cookie', cValue)
+      .send(bus)
+      .end((err, res) => {
+        res.should.have.status(401);
+        done();
+      });
+  });
+
+  it('return error on invalid bus params', (done) => {
+
+    const bus = {
+      number_plate: '',
+      manufacturer: 'Nissan',
+      model: 'Roadstar',
+      year: '',
+      capacity: 45
+    };
+
+    const cValue = "token=" + tokenAdmin;
+
+    chai.request(server)
+      .post('/api/v1/buses')
+      .set('content-type', 'application/x-www-form-urlencoded')
+      .set('Cookie', cValue)
+      .send(bus)
+      .end((err, res) => {
+        res.should.have.status(400);
+        done();
+      });
+  });
+
+});

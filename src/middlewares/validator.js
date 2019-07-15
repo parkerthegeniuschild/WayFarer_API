@@ -1,6 +1,6 @@
 import validationHelpers from '../utilities/validationHelpers';
 import {
-  emailRegex, passwordRegex,
+  emailRegex, passwordRegex, busYearRegex, numberRegex,
 } from '../utilities/regexen';
 
 const { checkForEmptyFields, checkPatternedFields } = validationHelpers;
@@ -28,6 +28,31 @@ export default {
         error: errors,
       });
     }
+    return next();
+  },
+
+  bus: (req, res, next) => {
+    const errors = [];
+
+    const {
+      number_plate, manufacturer, model, year, capacity,
+    } = req.body;
+
+    if (req.path.includes('buses')) {
+      errors.push(...checkForEmptyFields('Number Plate', number_plate));
+      errors.push(...checkForEmptyFields('Manufacturer', manufacturer));
+      errors.push(...checkForEmptyFields('Model', model));
+      errors.push(...checkPatternedFields('Year', year, busYearRegex));
+      errors.push(...checkPatternedFields('Capacity', capacity, numberRegex));
+    }
+
+    if (errors.length) {
+      return res.status(400).json({
+        status: 'error',
+        error: errors,
+      });
+    }
+
     return next();
   },
 
