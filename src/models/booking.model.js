@@ -31,4 +31,13 @@ export default {
     }
   }),
 
+  delete: booking => new Promise((resolve, reject) => {
+    try {
+      const result = db.deleteBooking(booking);
+      resolve(result);
+    } catch (err) {
+      reject(err);
+    }
+  }),
+
 };

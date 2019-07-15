@@ -620,5 +620,51 @@ describe('TESTING THE BOOKINGS ENDPOINTS', () => {
       });
   });
 
+  it('User cannot delete another users\' booking', (done) => {
+
+    const booking_id = 4; // belongs to another user
+
+    const cValue = "token=" + tokenUser;
+
+    chai.request(server)
+      .delete(`/api/v1/bookings/${booking_id}`)
+      .set('Cookie', cValue)
+      .end((err, res) => {
+        res.should.have.status(404);
+        done();
+      });
+  });
+
+  it('Admin can delete any booking', (done) => {
+
+    const booking_id = 5; // belong to user
+
+    const cValue = "token=" + tokenAdmin;
+
+    chai.request(server)
+      .delete('/api/v1/bookings/5')
+      .set('Cookie', cValue)
+      .end((err, res) => {
+        res.should.have.status(200);
+        done();
+      });
+  });
+
+  it('Only existing bookings can be deleted', (done) => {
+
+    const booking_id = 20; // does not exist
+
+    const cValue = "token=" + tokenAdmin;
+
+    chai.request(server)
+      .delete(`/api/v1/bookings/${booking_id}`)
+      .set('Cookie', cValue)
+      .end((err, res) => {
+        res.should.have.status(404);
+        done();
+      });
+  });
+
+
 
 });

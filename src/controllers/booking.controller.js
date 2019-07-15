@@ -79,4 +79,35 @@ export default {
       .catch(err => logger.error(err));
   },
 
+  /* delete a booking */
+  delete: async (req, res) => {
+    const { user_id, is_admin, bookingId } = req.body;
+
+    const booking = {
+      user_id,
+      is_admin,
+      bookingId,
+    };
+
+    await Bookings.delete(booking)
+      .then((result) => {
+        if (!result) {
+          return res.status(404)
+            .json({
+              status: 'error',
+              error: 'This booking has either been deleted or you do not have '
+                + 'sufficient privileges',
+            });
+        }
+        return res.status(200)
+          .json({
+            status: 'success',
+            data: {
+              message: 'Booking deleted successfully',
+            },
+          });
+      })
+      .catch(err => logger.error(err));
+  },
+
 };
