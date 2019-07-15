@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 import { config } from 'dotenv';
 import express from 'express';
 import winston from './logs/winston';
+import appRoot from 'app-root-path';
 
 config();
 
@@ -43,9 +44,7 @@ app.use(function(err, req, res, next) {
 });
 
 app.get('/', (req, res) =>  {
-  res.status(200).json({
-    message: 'Welcome to Wayfarer API !',
-  })
+  res.sendFile(`${appRoot}/client/index.html`)
 });
 
 const port = parseInt(process.env.PORT, 10) || 3000;
