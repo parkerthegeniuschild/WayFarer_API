@@ -401,6 +401,32 @@ const DBQueries = {
     }
   },
 
+  /**
+   * Delete a booking
+   */
+  async deleteBooking(booking) {
+    const { user_id, is_admin, bookingId } = booking;
+
+    let text;
+    const values = [bookingId];
+
+    if (!is_admin) {
+      text = 'DELETE FROM bookings WHERE bookings.id = $1 AND user_id = $2';
+      values.push(user_id);
+    } else {
+      text = 'DELETE FROM bookings WHERE bookings.id = $1';
+    }
+
+    try {
+      const res = await pool.query(text, values);
+      return res.rowCount >= 1;
+    } catch (err) {
+      logger.error(err.stack);
+      return err;
+    }
+  },
+
+
 };
 
 export default DBQueries;

@@ -17,6 +17,11 @@
     "start": "node dist/app.js",
     "start:dev": "nodemon --exec babel-node src/app.js"
   },
+  "nyc": {
+    "exclude": [
+      "src/app.js"
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/parkerthegeniuschild/WayFarer_API.git"
