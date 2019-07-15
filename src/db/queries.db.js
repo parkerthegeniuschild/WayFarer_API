@@ -170,6 +170,43 @@ const DBQueries = {
     }
   },
 
+  /**
+   * Create a new trip
+   */
+  async createTrip(trip) {
+    const {
+      bus_id, origin, destination, fare, trip_date,
+    } = trip;
+
+    const text = 'INSERT INTO trips (bus_id, origin, destination, fare, trip_date) VALUES($1,'
+      + ' $2, $3, $4, $5) RETURNING *';
+    const values = [bus_id, origin, destination, fare, trip_date];
+
+    // async/await
+    try {
+      const res = await pool.query(text, values);
+
+      if (res.rowCount < 1) {
+        return false;
+      }
+
+      const row = res.rows[0];
+
+      return {
+        trip_id: row.id,
+        bus_id,
+        origin,
+        destination,
+        fare,
+        trip_date,
+        status: row.status,
+      };
+    } catch (err) {
+      logger.error(err.stack);
+      return err;
+    }
+  },
+
 };
 
 export default DBQueries;

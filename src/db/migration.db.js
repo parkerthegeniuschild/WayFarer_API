@@ -40,9 +40,27 @@ const createDummyUsers = () => {
     .catch(err => logger.error(err.stack));
 };
 
+const createDummyBuses = () => {
+  const query = 'INSERT INTO buses(number_plate, manufacturer, model, year, capacity) '
+    + "VALUES ('FST 78 KJA', 'Nissan', 'Roadster', '2015', '45'),"
+    + " ('AGL 63 ISK', 'Toyota', 'Tacoma', '2018', '55'), ('BCD 77 AJS', 'Ford', 'Lumin', '2012',"
+    + " '65'), ('ZLS 81 SJS', 'Hyundai', 'Hayabusa', '2020', '33')";
+
+  (async () => {
+    const client = await pool.connect();
+    try {
+      client.query(query);
+      logger.info('Inserted dummy buses successfully');
+    } finally {
+      client.release();
+    }
+  })()
+    .catch(err => logger.error(err.stack));
+};
 
 const seedTables = () => {
   createDummyUsers();
+  setTimeout(createDummyBuses, 500);
 };
 
 module.exports = {

@@ -340,3 +340,78 @@ describe('TESTING THE BUSES ENDPOINTS', () => {
   });
 
 });
+
+
+describe('TESTING THE TRIPS ENDPOINTS', () => {
+
+  it('Admin can create a trip', (done) => {
+
+    const trip = {
+      bus_id: 3,
+      origin: 'Lagos',
+      destination: 'Port Harcourt',
+      trip_date: '2019-05-21',
+      fare: 7500.13,
+    };
+
+    const cValue = "token=" + tokenAdmin;
+
+    chai.request(server)
+      .post('/api/v1/trips')
+      .set('content-type', 'application/x-www-form-urlencoded')
+      .set('Cookie', cValue)
+      .send(trip)
+      .end((err, res) => {
+        res.should.have.status(201);
+        done();
+      });
+  });
+
+  it('return error on invalid trip params', (done) => {
+
+    const trip = {
+      bus_id: 3,
+      origin: '',
+      destination: 'Port Harcourt',
+      trip_date: '',
+      fare: 7500.13,
+    };
+
+    const cValue = "token=" + tokenAdmin;
+
+    chai.request(server)
+      .post('/api/v1/trips')
+      .set('content-type', 'application/x-www-form-urlencoded')
+      .set('Cookie', cValue)
+      .send(trip)
+      .end((err, res) => {
+        res.should.have.status(400);
+        done();
+      });
+  });
+
+  it(' cannot create trip for non existing bus', (done) => {
+
+    const trip = {
+      bus_id: 99, // since we don't have 9 yet
+      origin: 'Lagos',
+      destination: 'Port Harcourt',
+      trip_date: '2019-05-21',
+      fare: 7500.13,
+    };
+
+    const cValue = "token=" + tokenAdmin;
+
+    chai.request(server)
+      .post('/api/v1/trips')
+      .set('content-type', 'application/x-www-form-urlencoded')
+      .set('Cookie', cValue)
+      .send(trip)
+      .end((err, res) => {
+        res.should.have.status(400);
+        done();
+      });
+  });
+
+});
+
