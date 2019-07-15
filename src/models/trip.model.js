@@ -23,4 +23,14 @@ export default {
     }
   }),
 
+  /* Cancel a trip */
+  cancel: trip_id => new Promise((resolve, reject) => {
+    try {
+      const result = db.cancelTrip(trip_id);
+      resolve(result);
+    } catch (err) {
+      reject(err);
+    }
+  }),
+
 };

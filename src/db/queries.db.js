@@ -256,6 +256,22 @@ const DBQueries = {
     }
   },
 
+  /**
+   * Cancel a trip
+   */
+  async cancelTrip(trip_id) {
+    const text = 'UPDATE trips SET status = $1 WHERE id = $2';
+    const values = ['cancelled', trip_id];
+
+    try {
+      const res = await pool.query(text, values);
+      return res.rowCount >= 1;
+    } catch (err) {
+      logger.error(err.stack);
+      return err;
+    }
+  },
+
 };
 
 export default DBQueries;
