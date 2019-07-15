@@ -75,4 +75,70 @@ export default {
       });
   },
 
+  login: async (req, res) => {
+    const { email, password } = req.body;
+
+    const user = {
+      email,
+      password,
+    };
+
+    // check if the email is existing in the database;
+    await Users.get(user)
+      .then((data) => {
+        if (data === 'wrong password') {
+          return res.status(401).json({
+            status: 'error',
+            error: 'Your password is incorrect',
+          });
+        }
+
+        if (!data) {
+          return res.status(401)
+            .json({
+              status: 'error',
+              error: 'You are not a registered member',
+            });
+        }
+
+        if (data === 'error500') {
+          return res.status(500).json({
+            status: 'error',
+            error: 'Internal server error, please try again',
+          });
+        }
+        // sign jwt and wrap in a cookie
+
+        const {
+          // eslint-disable-next-line no-shadow
+          user_id, is_admin, first_name, last_name, email,
+        } = data;
+
+        const token = jwt.sign({
+          user_id,
+          is_admin,
+          first_name,
+          last_name,
+          email,
+        }, process.env.JWT_SECRET);
+        res.cookie('token', token, { expires: new Date(Date.now() + 3600000), httpOnly: true });
+
+        data.token = token;
+
+        return res.status(200).json({
+          status: 'success',
+          data,
+        });
+      })
+      .catch((err) => {
+        logger.error(err);
+        return res.status(500).json({
+          status: 'error',
+          error: {
+            message: err,
+          },
+        });
+      });
+  },
+
 };

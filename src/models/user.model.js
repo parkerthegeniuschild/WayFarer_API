@@ -14,4 +14,14 @@ export default {
     }
   }),
 
+  /* Login A User */
+  get: User => new Promise((resolve, reject) => {
+    try {
+      const result = db.loginUser(User);
+      resolve(result);
+    } catch (e) {
+      reject(e);
+    }
+  }),
+
 };

@@ -16,6 +16,7 @@ install:
 before_script:
   - psql -c 'CREATE DATABASE wayfarer_db;' -U postgres
   - psql -c "ALTER ROLE postgres PASSWORD 'postgres';" -U postgres
+  - touch src/logs/app.log
 
 script:
   - npm run migrate
@@ -23,6 +24,4 @@ script:
 
 after_success:
   - npm run coverage
-  - npm run cleanTest
-  - npm run build
   - npm run tablesDown
