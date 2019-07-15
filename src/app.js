@@ -22,11 +22,12 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(morgan('combined', { stream: winston.stream }));
 
-app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'html');
+// app.engine('html', require('ejs').renderFile);
+// app.set('view engine', 'html');
 
 app.use('/api/v1', v1Router);
 
+// error handler
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development

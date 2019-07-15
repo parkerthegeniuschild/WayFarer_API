@@ -108,6 +108,30 @@ const DBQueries = {
     }
   },
 
+  /**
+   * Create a new bus
+   */
+  async createBus(bus) {
+    const {
+      number_plate, manufacturer, model, year, capacity,
+    } = bus;
+
+    const text = 'INSERT INTO buses (number_plate, manufacturer, model, year, capacity) VALUES($1,'
+      + ' $2, $3, $4, $5) RETURNING *';
+    const values = [number_plate, manufacturer, model, year, capacity];
+
+    try {
+      const res = await pool.query(text, values);
+      if (res.rows[0]) {
+        return res.rows[0];
+      }
+      return 'error';
+    } catch (err) {
+      logger.error(err.stack);
+      return 'error500';
+    }
+  },
+
 };
 
 export default DBQueries;
