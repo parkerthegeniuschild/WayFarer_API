@@ -1,0 +1,28 @@
+language: node_js
+sudo: false
+node_js:
+  - stable
+
+cache:
+  directories:
+    - node_modules
+
+services:
+  - postgresql
+
+install:
+  - npm install
+
+before_script:
+  - psql -c 'CREATE DATABASE wayfarer_db;' -U postgres
+  - psql -c "ALTER ROLE postgres PASSWORD 'postgres';" -U postgres
+
+script:
+  - npm run migrate
+  - npm test
+
+after_success:
+  - npm run coverage
+  - npm run cleanTest
+  - npm run build
+  - npm run tablesDown
