@@ -20,6 +20,7 @@ router.get('/buses', Authenticator.checkToken, BusController.findAll);
 // trips
 router.post('/trips', Authenticator.checkToken, Authenticator.isAdmin,
   Validator.trip, TripController.create);
+router.get('/trips', TripController.findAll);
 
 
 export default router;
