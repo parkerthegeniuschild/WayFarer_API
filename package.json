@@ -10,7 +10,7 @@
     "build": "babel src --out-dir dist --copy-files",
     "clean": "rm -rf dist && mkdir dist",
     "cleanTest": "rm -rf coverage && mkdir coverage",
-    "heroku-postbuild": "npm run clean && npm run build",
+    "heroku-postbuild": "npm run migrate && npm run clean && npm run build",
     "lint": "eslint --ignore-path .eslintignore .",
     "test": "nyc mocha -r esm --cache false --exit",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
