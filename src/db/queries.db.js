@@ -347,6 +347,60 @@ const DBQueries = {
     }
   },
 
+  /**
+   * Get all bookings
+   */
+  async getAllBookings(user) {
+    const { user_id, is_admin } = user;
+
+    let text;
+    let values;
+
+    if (is_admin) {
+      text = 'SELECT bookings.id, bookings.user_id, bookings.trip_id, trips.bus_id,'
+        + ' trips.trip_date,bookings.seat_number, users.first_name, users.last_name, users.email'
+        + ' FROM bookings JOIN trips ON bookings.trip_id = trips.id JOIN users ON'
+        + ' bookings.user_id = users.id';
+      values = [];
+    } else {
+      text = 'SELECT bookings.id, bookings.user_id, bookings.trip_id, trips.bus_id,'
+        + ' trips.trip_date, bookings.seat_number, users.first_name, users.last_name, users.email'
+        + ' FROM bookings JOIN trips ON bookings.trip_id = trips.id JOIN users ON'
+        + ' bookings.user_id = users.id WHERE users.id = $1';
+      values = [user_id];
+    }
+
+    try {
+      const res = await pool.query(text, values);
+
+      if (res.rowCount < 1) {
+        return false;
+      }
+
+      const bookings = [];
+
+      for (let i = 0; i < res.rowCount; i += 1) {
+        const row = res.rows[i];
+
+        bookings[i] = {
+          booking_id: row.id,
+          user_id: row.user_id,
+          trip_id: row.trip_id,
+          bus_id: row.bus_id,
+          trip_date: row.trip_date,
+          seat_number: row.seat_number,
+          first_name: row.first_name,
+          last_name: row.last_name,
+          email: row.email,
+        };
+      }
+      return bookings;
+    } catch (err) {
+      logger.error(err.stack);
+      return err;
+    }
+  },
+
 };
 
 export default DBQueries;

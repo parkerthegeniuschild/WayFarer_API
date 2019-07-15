@@ -594,4 +594,31 @@ describe('TESTING THE BOOKINGS ENDPOINTS', () => {
       });
   });
 
+  it('Admin can get all bookings', (done) => {
+
+    const cValue = "token=" + tokenAdmin;
+
+    chai.request(server)
+      .get('/api/v1/bookings')
+      .set('Cookie', cValue)
+      .end((err, res) => {
+        res.should.have.status(200);
+        done();
+      });
+  });
+
+  it('User can only get his own bookings', (done) => {
+
+    const cValue = "token=" + tokenUser;
+
+    chai.request(server)
+      .get('/api/v1/bookings')
+      .set('Cookie', cValue)
+      .end((err, res) => {
+        res.should.have.status(200);
+        done();
+      });
+  });
+
+
 });

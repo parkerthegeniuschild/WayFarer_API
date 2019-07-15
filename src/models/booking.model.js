@@ -22,4 +22,13 @@ export default {
     }
   }),
 
+  getAll: user => new Promise((resolve, reject) => {
+    try {
+      const result = db.getAllBookings(user);
+      resolve(result);
+    } catch (err) {
+      reject(err);
+    }
+  }),
+
 };

@@ -27,6 +27,7 @@ router.patch('/trips/:tripId', Authenticator.checkToken,
 
 // bookings
 router.post('/bookings', Authenticator.checkToken, Validator.booking, BookingController.create);
+router.get('/bookings', Authenticator.checkToken, BookingController.findAll);
 
 
 export default router;
