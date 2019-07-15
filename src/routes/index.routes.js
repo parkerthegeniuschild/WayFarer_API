@@ -21,6 +21,8 @@ router.get('/buses', Authenticator.checkToken, BusController.findAll);
 router.post('/trips', Authenticator.checkToken, Authenticator.isAdmin,
   Validator.trip, TripController.create);
 router.get('/trips', TripController.findAll);
+router.patch('/trips/:tripId', Authenticator.checkToken,
+  Authenticator.isAdmin, Validator.checkId, TripController.cancel);
 
 
 export default router;

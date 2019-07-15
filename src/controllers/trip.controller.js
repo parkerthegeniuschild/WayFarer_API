@@ -73,5 +73,36 @@ export default {
       });
   },
 
+  cancel: async (req, res) => {
+    const { trip_id } = req.body;
+
+    await Trips.cancel(trip_id)
+      .then((result) => {
+        if (!result) {
+          return res.status(404)
+            .json({
+              status: 'error',
+              error: 'Trip does not exist',
+            });
+        }
+        return res.status(200)
+          .json({
+            status: 'success',
+            data: {
+              message: 'Trip cancelled successfully',
+            },
+          });
+      })
+      .catch((err) => {
+        logger.error(err);
+        return res.status(500).json({
+          status: 'error',
+          error: {
+            message: err,
+          },
+        });
+      });
+  },
+
 
 };

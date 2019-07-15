@@ -462,4 +462,64 @@ describe('TESTING THE TRIPS ENDPOINTS', () => {
       });
   });
 
+  it('Admin can cancel trip', (done) => {
+
+    const tripId = 1;
+
+    const cValue = "token=" + tokenAdmin;
+
+    chai.request(server)
+      .patch(`/api/v1/trips/${tripId}`)
+      .set('Cookie', cValue)
+      .end((err, res) => {
+        res.should.have.status(200);
+        done();
+      });
+  });
+
+  it('Admin cannot cancel a nonexistent trip', (done) => {
+
+    const tripId = 99;
+
+    const cValue = "token=" + tokenAdmin;
+
+    chai.request(server)
+      .patch(`/api/v1/trips/${tripId}`)
+      .set('Cookie', cValue)
+      .end((err, res) => {
+        res.should.have.status(404);
+        done();
+      });
+  });
+
+  it('trip to be cancelled must be valid', (done) => {
+
+    const tripId = '099';
+
+    const cValue = "token=" + tokenAdmin;
+
+    chai.request(server)
+      .patch(`/api/v1/trips/${tripId}`)
+      .set('Cookie', cValue)
+      .end((err, res) => {
+        res.should.have.status(400);
+        done();
+      });
+  });
+
+  it('only Admin can cancel trips', (done) => {
+
+    const tripId = 2;
+
+    const cValue = "token=" + tokenUser;
+
+    chai.request(server)
+      .patch(`/api/v1/trips/${tripId}`)
+      .set('Cookie', cValue)
+      .end((err, res) => {
+        res.should.have.status(401);
+        done();
+      });
+  });
+
 });

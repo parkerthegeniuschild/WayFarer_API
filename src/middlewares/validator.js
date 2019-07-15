@@ -80,4 +80,33 @@ export default {
     return next();
   },
 
+  checkId: (req, res, next) => {
+    const errors = [];
+
+    const { tripId, bookingId } = req.params;
+
+    if (req.path.includes('trips')) {
+      errors.push(...checkPatternedFields('Trip ID', tripId, numberRegex));
+    } else {
+      errors.push(...checkPatternedFields('Booking ID', bookingId, numberRegex));
+    }
+
+    if (errors.length) {
+      return res.status(400).json({
+        status: 'error',
+        error: errors,
+      });
+    }
+
+    if (typeof tripId !== 'undefined') {
+      req.body.trip_id = tripId;
+    }
+
+    if (typeof bookingId !== 'undefined') {
+      req.body.bookingId = bookingId;
+    }
+
+    return next();
+  },
+
 };
