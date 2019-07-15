@@ -132,6 +132,44 @@ const DBQueries = {
     }
   },
 
+  /**
+   * Get all buses
+   */
+  async getAllBuses(filters) {
+    const { manufacturer, model, year } = filters;
+
+    let text;
+    let values;
+
+    if (manufacturer && !model && !year) {
+      text = 'SELECT * FROM buses WHERE manufacturer = $1 LIMIT 50';
+      values = [manufacturer];
+    } else if (model && !manufacturer && !year) {
+      text = 'SELECT * FROM buses WHERE model = $1 LIMIT 50';
+      values = [model];
+    } else if (year && !manufacturer && !model) {
+      text = 'SELECT * FROM buses WHERE year = $1 LIMIT 50';
+      values = [year];
+    } else if (year && manufacturer && !model) {
+      text = 'SELECT * FROM buses WHERE year = $1 AND manufacturer = $2 LIMIT 50';
+      values = [year, manufacturer];
+    } else if (manufacturer && model && year) {
+      text = 'SELECT * FROM buses WHERE manufacturer = $1 AND model = $2 AND year = $3 LIMIT 50';
+      values = [manufacturer, model, year];
+    } else {
+      text = 'SELECT * FROM buses LIMIT 50';
+      values = [];
+    }
+
+    try {
+      const res = await pool.query(text, values);
+      if (res.rows) return res.rows;
+    } catch (err) {
+      logger.error(err.stack);
+      return false;
+    }
+  },
+
 };
 
 export default DBQueries;

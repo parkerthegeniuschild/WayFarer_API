@@ -13,4 +13,14 @@ export default {
     }
   }),
 
+  /* Get all buses */
+  getAll: filters => new Promise((resolve, reject) => {
+    try {
+      const result = db.getAllBuses(filters);
+      resolve(result);
+    } catch (err) {
+      reject(err);
+    }
+  }),
+
 };

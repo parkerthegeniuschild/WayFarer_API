@@ -326,4 +326,17 @@ describe('TESTING THE BUSES ENDPOINTS', () => {
       });
   });
 
+  it('bus route is protected unless logged in', (done) => {
+
+    const cValue = "token=" + tokenAdmin;
+
+    chai.request(server)
+      .get('/api/v1/buses')
+      .set('Cookie', cValue)
+      .end((err, res) => {
+        res.should.have.status(200);
+        done();
+      });
+  });
+
 });
