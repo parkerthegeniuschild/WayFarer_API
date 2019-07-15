@@ -77,10 +77,27 @@ const createDummyTrips = () => {
     .catch(err => logger.error(err.stack));
 };
 
+const createDummyBookings = () => {
+  const query = "INSERT INTO bookings(trip_id, user_id, seat_number) VALUES ('1', '1', '27'), "
+    + "('2', '2', '13'), ('3', '1', '8'), ('4', '2', '12'), ('4', '1', '6')";
+
+  (async () => {
+    const client = await pool.connect();
+    try {
+      client.query(query);
+      logger.info('Inserted dummy bookings successfully');
+    } finally {
+      client.release();
+    }
+  })()
+    .catch(err => logger.error(err.stack));
+};
+
 const seedTables = () => {
   createDummyUsers();
   setTimeout(createDummyBuses, 500);
   setTimeout(createDummyTrips, 1000);
+  setTimeout(createDummyBookings, 1500);
 };
 
 module.exports = {

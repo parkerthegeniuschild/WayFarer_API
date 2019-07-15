@@ -272,6 +272,81 @@ const DBQueries = {
     }
   },
 
+  /**
+   * Create a new booking
+   */
+  async createBooking(booking) {
+    const {
+      trip_id, seat_number, user_id,
+    } = booking;
+
+    let text;
+    const values = [trip_id, user_id];
+
+    if (seat_number) {
+      text = 'INSERT INTO bookings (seat_number, trip_id, user_id) '
+        + 'VALUES ($1, $2, $3) RETURNING id';
+      values.unshift(seat_number);
+    } else {
+      text = 'INSERT INTO bookings (trip_id, user_id) VALUES($1, $2) RETURNING id';
+    }
+    // async/await
+    try {
+      const res = await pool.query(text, values);
+
+      if (res.rowCount < 1) {
+        return false;
+      }
+
+      const row = res.rows[0];
+
+      return {
+        booking_id: row.id,
+      };
+    } catch (err) {
+      logger.error(err.stack);
+      return err;
+    }
+  },
+
+  /**
+   * Get one booking
+   */
+  async getOneBooking(id) {
+    const text = `SELECT bookings.id, bookings.user_id, bookings.trip_id, trips.bus_id, 
+      trips.trip_date,bookings.seat_number, users.first_name, users.last_name, users.email 
+      FROM bookings JOIN trips ON bookings.trip_id = trips.id JOIN users ON 
+      bookings.user_id = users.id WHERE bookings.id = $1`;
+    const values = [id];
+
+    try {
+      const res = await pool.query(text, values);
+
+      if (res.rowCount < 1) {
+        return false;
+      }
+
+      const row = res.rows[0];
+
+      return {
+        booking_id: id,
+        user_id: row.user_id,
+        trip_id: row.trip_id,
+        bus_id: row.bus_id,
+        trip_date: row.trip_date,
+        seat_number: row.seat_number,
+        first_name: row.first_name,
+        last_name: row.last_name,
+        email: row.email,
+      };
+
+      // return res.rows[0];
+    } catch (err) {
+      logger.error(err.stack);
+      return err;
+    }
+  },
+
 };
 
 export default DBQueries;
