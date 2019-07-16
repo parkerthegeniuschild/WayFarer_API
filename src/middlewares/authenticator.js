@@ -15,7 +15,7 @@ export default {
     if (typeof token === 'undefined') {
       return res.status(403).json({
         status: 'error',
-        error: 'Forbidden: You must be logged in to proceed',
+        error: 'You must be logged in to proceed',
       });
     }
 
@@ -38,7 +38,6 @@ export default {
       return res.status(400).json({
         status: 'error',
         error: 'Authentication failed!',
-        data: req.user,
       });
     }
   },
@@ -49,7 +48,7 @@ export default {
     if (is_admin !== true) {
       return res.status(401).json({
         status: 'error',
-        error: 'Forbidden: Only Admins can perform this operation',
+        error: 'Auth Error: Only Admins can perform this operation',
       });
     }
     return next();

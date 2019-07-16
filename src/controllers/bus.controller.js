@@ -66,7 +66,7 @@ export default {
           return res.status(200)
             .json({
               status: 'success',
-              error: 'No buses found',
+              data: 'No buses found',
             });
         }
         return res.status(200).json({

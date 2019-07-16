@@ -1,393 +1,486 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><title>WayFarer API</title><link rel="stylesheet"
-                                                                                  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"><style>@import url('https://fonts.googleapis.com/css?family=Roboto:400,700|Inconsolata|Raleway:200');.hljs-comment,.hljs-title{color:#8e908c}.hljs-variable,.hljs-attribute,.hljs-tag,.hljs-regexp,.ruby .hljs-constant,.xml .hljs-tag .hljs-title,.xml .hljs-pi,.xml .hljs-doctype,.html .hljs-doctype,.css .hljs-id,.css .hljs-class,.css .hljs-pseudo{color:#c82829}.hljs-number,.hljs-preprocessor,.hljs-pragma,.hljs-built_in,.hljs-literal,.hljs-params,.hljs-constant{color:#f5871f}.ruby .hljs-class .hljs-title,.css .hljs-rules .hljs-attribute{color:#eab700}.hljs-string,.hljs-value,.hljs-inheritance,.hljs-header,.ruby .hljs-symbol,.xml .hljs-cdata{color:#718c00}.css .hljs-hexcolor{color:#3e999f}.hljs-function,.python .hljs-decorator,.python .hljs-title,.ruby .hljs-function .hljs-title,.ruby .hljs-title .hljs-keyword,.perl .hljs-sub,.javascript .hljs-title,.coffeescript .hljs-title{color:#4271ae}.hljs-keyword,.javascript .hljs-function{color:#8959a8}.hljs{display:block;background:white;color:#4d4d4c;padding:.5em}.coffeescript .javascript,.javascript .xml,.tex .hljs-formula,.xml .javascript,.xml .vbscript,.xml .css,.xml .hljs-cdata{opacity:.5}.right .hljs-comment{color:#969896}.right .css .hljs-class,.right .css .hljs-id,.right .css .hljs-pseudo,.right .hljs-attribute,.right .hljs-regexp,.right .hljs-tag,.right .hljs-variable,.right .html .hljs-doctype,.right .ruby .hljs-constant,.right .xml .hljs-doctype,.right .xml .hljs-pi,.right .xml .hljs-tag .hljs-title{color:#c66}.right .hljs-built_in,.right .hljs-constant,.right .hljs-literal,.right .hljs-number,.right .hljs-params,.right .hljs-pragma,.right .hljs-preprocessor{color:#de935f}.right .css .hljs-rule .hljs-attribute,.right .ruby .hljs-class .hljs-title{color:#f0c674}.right .hljs-header,.right .hljs-inheritance,.right .hljs-name,.right .hljs-string,.right .hljs-value,.right .ruby .hljs-symbol,.right .xml .hljs-cdata{color:#b5bd68}.right .css .hljs-hexcolor,.right .hljs-title{color:#8abeb7}.right .coffeescript .hljs-title,.right .hljs-function,.right .javascript .hljs-title,.right .perl .hljs-sub,.right .python .hljs-decorator,.right .python .hljs-title,.right .ruby .hljs-function .hljs-title,.right .ruby .hljs-title .hljs-keyword{color:#81a2be}.right .hljs-keyword,.right .javascript .hljs-function{color:#b294bb}.right .hljs{display:block;overflow-x:auto;background:#1d1f21;color:#c5c8c6;padding:.5em;-webkit-text-size-adjust:none}.right .coffeescript .javascript,.right .javascript .xml,.right .tex .hljs-formula,.right .xml .css,.right .xml .hljs-cdata,.right .xml .javascript,.right .xml .vbscript{opacity:.5}body{color:black;background:white;font:400 14px / 1.42 'Roboto',Helvetica,sans-serif}header{border-bottom:1px solid #f2f2f2;margin-bottom:12px}h1,h2,h3,h4,h5{color:black;margin:12px 0}h1 .permalink,h2 .permalink,h3 .permalink,h4 .permalink,h5 .permalink{margin-left:0;opacity:0;transition:opacity .25s ease}h1:hover .permalink,h2:hover .permalink,h3:hover .permalink,h4:hover .permalink,h5:hover .permalink{opacity:1}.triple h1 .permalink,.triple h2 .permalink,.triple h3 .permalink,.triple h4 .permalink,.triple h5 .permalink{opacity:.15}.triple h1:hover .permalink,.triple h2:hover .permalink,.triple h3:hover .permalink,.triple h4:hover .permalink,.triple h5:hover .permalink{opacity:.15}h1{font:200 36px 'Raleway',Helvetica,sans-serif;font-size:36px}h2{font:200 36px 'Raleway',Helvetica,sans-serif;font-size:30px}h3{font-size:100%;text-transform:uppercase}h5{font-size:100%;font-weight:normal}p{margin:0 0 10px}p.choices{line-height:1.6}a{color:#428bca;text-decoration:none}li p{margin:0}hr.split{border:0;height:1px;width:100%;padding-left:6px;margin:12px auto;background-image:linear-gradient(to right, rgba(0,0,0,0) 20%, rgba(0,0,0,0.2) 51.4%, rgba(255,255,255,0.2) 51.4%, rgba(255,255,255,0) 80%)}dl dt{float:left;width:130px;clear:left;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:700}dl dd{margin-left:150px}blockquote{color:rgba(0,0,0,0.5);font-size:15.5px;padding:10px 20px;margin:12px 0;border-left:5px solid #e8e8e8}blockquote p:last-child{margin-bottom:0}pre{background-color:#f5f5f5;padding:12px;border:1px solid #cfcfcf;border-radius:6px;overflow:auto}pre code{color:black;background-color:transparent;padding:0;border:none}code{color:#444;background-color:#f5f5f5;font:'Inconsolata',monospace;padding:1px 4px;border:1px solid #cfcfcf;border-radius:3px}ul,ol{padding-left:2em}table{border-collapse:collapse;border-spacing:0;margin-bottom:12px}table tr:nth-child(2n){background-color:#fafafa}table th,table td{padding:6px 12px;border:1px solid #e6e6e6}.text-muted{opacity:.5}.note,.warning{padding:.3em 1em;margin:1em 0;border-radius:2px;font-size:90%}.note h1,.warning h1,.note h2,.warning h2,.note h3,.warning h3,.note h4,.warning h4,.note h5,.warning h5,.note h6,.warning h6{font-family:200 36px 'Raleway',Helvetica,sans-serif;font-size:135%;font-weight:500}.note p,.warning p{margin:.5em 0}.note{color:black;background-color:#f0f6fb;border-left:4px solid #428bca}.note h1,.note h2,.note h3,.note h4,.note h5,.note h6{color:#428bca}.warning{color:black;background-color:#fbf1f0;border-left:4px solid #c9302c}.warning h1,.warning h2,.warning h3,.warning h4,.warning h5,.warning h6{color:#c9302c}header{margin-top:24px}nav{position:fixed;top:24px;bottom:0;overflow-y:auto}nav .resource-group{padding:0}nav .resource-group .heading{position:relative}nav .resource-group .heading .chevron{position:absolute;top:12px;right:12px;opacity:.5}nav .resource-group .heading a{display:block;color:black;opacity:.7;border-left:2px solid transparent;margin:0}nav .resource-group .heading a:hover{text-decoration:none;background-color:bad-color;border-left:2px solid black}nav ul{list-style-type:none;padding-left:0}nav ul a{display:block;font-size:13px;color:rgba(0,0,0,0.7);padding:8px 12px;border-top:1px solid #d9d9d9;border-left:2px solid transparent;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}nav ul a:hover{text-decoration:none;background-color:bad-color;border-left:2px solid black}nav ul>li{margin:0}nav ul>li:first-child{margin-top:-12px}nav ul>li:last-child{margin-bottom:-12px}nav ul ul a{padding-left:24px}nav ul ul li{margin:0}nav ul ul li:first-child{margin-top:0}nav ul ul li:last-child{margin-bottom:0}nav>div>div>ul>li:first-child>a{border-top:none}.preload *{transition:none !important}.pull-left{float:left}.pull-right{float:right}.badge{display:inline-block;float:right;min-width:10px;min-height:14px;padding:3px 7px;font-size:12px;color:#000;background-color:#f2f2f2;border-radius:10px;margin:-2px 0}.badge.get{color:#70bbe1;background-color:#d9edf7}.badge.head{color:#70bbe1;background-color:#d9edf7}.badge.options{color:#70bbe1;background-color:#d9edf7}.badge.put{color:#f0db70;background-color:#fcf8e3}.badge.patch{color:#f0db70;background-color:#fcf8e3}.badge.post{color:#93cd7c;background-color:#dff0d8}.badge.delete{color:#ce8383;background-color:#f2dede}.collapse-button{float:right}.collapse-button .close{display:none;color:#428bca;cursor:pointer}.collapse-button .open{color:#428bca;cursor:pointer}.collapse-button.show .close{display:inline}.collapse-button.show .open{display:none}.collapse-content{max-height:0;overflow:hidden;transition:max-height .3s ease-in-out}nav{width:220px}.container{max-width:940px;margin-left:auto;margin-right:auto}.container .row .content{margin-left:244px;width:696px}.container .row:after{content:'';display:block;clear:both}.container-fluid nav{width:22%}.container-fluid .row .content{margin-left:24%}.container-fluid.triple nav{width:16.5%;padding-right:1px}.container-fluid.triple .row .content{position:relative;margin-left:16.5%;padding-left:24px}.middle:before,.middle:after{content:'';display:table}.middle:after{clear:both}.middle{box-sizing:border-box;width:51.5%;padding-right:12px}.right{box-sizing:border-box;float:right;width:48.5%;padding-left:12px}.right a{color:#428bca}.right h1,.right h2,.right h3,.right h4,.right h5,.right p,.right div{color:white}.right pre{background-color:#1d1f21;border:1px solid #1d1f21}.right pre code{color:#c5c8c6}.right .description{margin-top:12px}.triple .resource-heading{font-size:125%}.definition{margin-top:12px;margin-bottom:12px}.definition .method{font-weight:bold}.definition .method.get{color:#2e8ab8}.definition .method.head{color:#2e8ab8}.definition .method.options{color:#2e8ab8}.definition .method.post{color:#56b82e}.definition .method.put{color:#b8a22e}.definition .method.patch{color:#b8a22e}.definition .method.delete{color:#b82e2e}.definition .uri{word-break:break-all;word-wrap:break-word}.definition .hostname{opacity:.5}.example-names{background-color:#eee;padding:12px;border-radius:6px}.example-names .tab-button{cursor:pointer;color:black;border:1px solid #ddd;padding:6px;margin-left:12px}.example-names .tab-button.active{background-color:#d5d5d5}.right .example-names{background-color:#444}.right .example-names .tab-button{color:white;border:1px solid #666;border-radius:6px}.right .example-names .tab-button.active{background-color:#5e5e5e}#nav-background{position:fixed;left:0;top:0;bottom:0;width:16.5%;padding-right:14.4px;background-color:#fbfbfb;border-right:1px solid #f0f0f0;z-index:-1}#right-panel-background{position:absolute;right:-12px;top:-12px;bottom:-12px;width:48.6%;background-color:#333;z-index:-1}@media (max-width:1200px){nav{width:198px}.container{max-width:840px}.container .row .content{margin-left:224px;width:606px}}@media (max-width:992px){nav{width:169.4px}.container{max-width:720px}.container .row .content{margin-left:194px;width:526px}}@media (max-width:768px){nav{display:none}.container{width:95%;max-width:none}.container .row .content,.container-fluid .row .content,.container-fluid.triple .row .content{margin-left:auto;margin-right:auto;width:95%}#nav-background{display:none}#right-panel-background{width:48.6%}}.back-to-top{position:fixed;z-index:1;bottom:0;right:24px;padding:4px 8px;color:rgba(0,0,0,0.5);background-color:#f2f2f2;text-decoration:none !important;border-top:1px solid #d9d9d9;border-left:1px solid #d9d9d9;border-right:1px solid #d9d9d9;border-top-left-radius:3px;border-top-right-radius:3px}.resource-group{padding:12px;margin-bottom:12px;background-color:white;border:1px solid #d9d9d9;border-radius:6px}.resource-group h2.group-heading,.resource-group .heading a{padding:12px;margin:-12px -12px 12px -12px;background-color:#f2f2f2;border-bottom:1px solid #d9d9d9;border-top-left-radius:6px;border-top-right-radius:6px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}.triple .content .resource-group{padding:0;border:none}.triple .content .resource-group h2.group-heading,.triple .content .resource-group .heading a{margin:0 0 12px 0;border:1px solid #d9d9d9}nav .resource-group .heading a{padding:12px;margin-bottom:0}nav .resource-group .collapse-content{padding:0}.action{margin-bottom:12px;padding:12px 12px 0 12px;overflow:hidden;border:1px solid transparent;border-radius:6px}.action h4.action-heading{padding:6px 12px;margin:-12px -12px 12px -12px;border-bottom:1px solid transparent;border-top-left-radius:6px;border-top-right-radius:6px;overflow:hidden}.action h4.action-heading .name{float:right;font-weight:normal;padding:6px 0}.action h4.action-heading .method{padding:6px 12px;margin-right:12px;border-radius:3px;display:inline-block}.action h4.action-heading .method.get{color:#fff;background-color:#337ab7}.action h4.action-heading .method.head{color:#fff;background-color:#337ab7}.action h4.action-heading .method.options{color:#fff;background-color:#337ab7}.action h4.action-heading .method.put{color:#fff;background-color:#ed9c28}.action h4.action-heading .method.patch{color:#fff;background-color:#ed9c28}.action h4.action-heading .method.post{color:#fff;background-color:#5cb85c}.action h4.action-heading .method.delete{color:#fff;background-color:#d9534f}.action h4.action-heading code{color:#444;background-color:#f5f5f5;border-color:#cfcfcf;font-weight:normal;word-break:break-all;display:inline-block;margin-top:2px}.action dl.inner{padding-bottom:2px}.action .title{border-bottom:1px solid white;margin:0 -12px -1px -12px;padding:12px}.action.get{border-color:#bce8f1}.action.get h4.action-heading{color:#337ab7;background:#d9edf7;border-bottom-color:#bce8f1}.action.head{border-color:#bce8f1}.action.head h4.action-heading{color:#337ab7;background:#d9edf7;border-bottom-color:#bce8f1}.action.options{border-color:#bce8f1}.action.options h4.action-heading{color:#337ab7;background:#d9edf7;border-bottom-color:#bce8f1}.action.post{border-color:#d6e9c6}.action.post h4.action-heading{color:#5cb85c;background:#dff0d8;border-bottom-color:#d6e9c6}.action.put{border-color:#faebcc}.action.put h4.action-heading{color:#ed9c28;background:#fcf8e3;border-bottom-color:#faebcc}.action.patch{border-color:#faebcc}.action.patch h4.action-heading{color:#ed9c28;background:#fcf8e3;border-bottom-color:#faebcc}.action.delete{border-color:#ebccd1}.action.delete h4.action-heading{color:#d9534f;background:#f2dede;border-bottom-color:#ebccd1}</style></head><body class="preload"><a href="#top" class="text-muted back-to-top"><i class="fa fa-toggle-up"></i>&nbsp;Back to top</a><div class="container"><div class="row"><nav><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#top">Overview</a></div><div class="collapse-content"><ul><li><a href="#header-create-new-user">Create New User</a></li><li><a href="#header-login-a-user">Login A User</a></li><li><a href="#header-create-a-new-bus">Create A New Bus</a></li><li><a href="#header-get-all-buses">Get All Buses</a></li><li><a href="#header-create-a-new-trip">Create A New Trip</a></li><li><a href="#header-get-all-trips">Get All Trips</a></li><li><a href="#header-cancel-a-trip">Cancel A Trip</a></li><li><a href="#header-create-a-new-booking">Create A New Booking</a></li><li><a href="#header-get-all-bookings">Get All Bookings</a></li><li><a href="#header-delete-a-booking">Delete A Booking</a></li></ul></div></div><p style="text-align: center; word-wrap: break-word;"><a href="https://parkerthegeniuschild.herokuapp.com/api/v1">https://parkerthegeniuschild.herokuapp.com/api/v1</a></p></nav><div class="content"><header><h1 id="top">WayFarer API</h1></header><p>WayFarer is a public bus transportation booking server. Users can register, login,
-and create a booking. The admins will be in charge of adding all the buses, and
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>WayFarer API</title><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"><style>@import url('https://fonts.googleapis.com/css?family=Roboto:400,700|Inconsolata|Raleway:200');.hljs-comment,.hljs-title{color:#8e908c}.hljs-variable,.hljs-attribute,.hljs-tag,.hljs-regexp,.ruby .hljs-constant,.xml .hljs-tag .hljs-title,.xml .hljs-pi,.xml .hljs-doctype,.html .hljs-doctype,.css .hljs-id,.css .hljs-class,.css .hljs-pseudo{color:#c82829}.hljs-number,.hljs-preprocessor,.hljs-pragma,.hljs-built_in,.hljs-literal,.hljs-params,.hljs-constant{color:#f5871f}.ruby .hljs-class .hljs-title,.css .hljs-rules .hljs-attribute{color:#eab700}.hljs-string,.hljs-value,.hljs-inheritance,.hljs-header,.ruby .hljs-symbol,.xml .hljs-cdata{color:#718c00}.css .hljs-hexcolor{color:#3e999f}.hljs-function,.python .hljs-decorator,.python .hljs-title,.ruby .hljs-function .hljs-title,.ruby .hljs-title .hljs-keyword,.perl .hljs-sub,.javascript .hljs-title,.coffeescript .hljs-title{color:#4271ae}.hljs-keyword,.javascript .hljs-function{color:#8959a8}.hljs{display:block;background:white;color:#4d4d4c;padding:.5em}.coffeescript .javascript,.javascript .xml,.tex .hljs-formula,.xml .javascript,.xml .vbscript,.xml .css,.xml .hljs-cdata{opacity:.5}.right .hljs-comment{color:#969896}.right .css .hljs-class,.right .css .hljs-id,.right .css .hljs-pseudo,.right .hljs-attribute,.right .hljs-regexp,.right .hljs-tag,.right .hljs-variable,.right .html .hljs-doctype,.right .ruby .hljs-constant,.right .xml .hljs-doctype,.right .xml .hljs-pi,.right .xml .hljs-tag .hljs-title{color:#c66}.right .hljs-built_in,.right .hljs-constant,.right .hljs-literal,.right .hljs-number,.right .hljs-params,.right .hljs-pragma,.right .hljs-preprocessor{color:#de935f}.right .css .hljs-rule .hljs-attribute,.right .ruby .hljs-class .hljs-title{color:#f0c674}.right .hljs-header,.right .hljs-inheritance,.right .hljs-name,.right .hljs-string,.right .hljs-value,.right .ruby .hljs-symbol,.right .xml .hljs-cdata{color:#b5bd68}.right .css .hljs-hexcolor,.right .hljs-title{color:#8abeb7}.right .coffeescript .hljs-title,.right .hljs-function,.right .javascript .hljs-title,.right .perl .hljs-sub,.right .python .hljs-decorator,.right .python .hljs-title,.right .ruby .hljs-function .hljs-title,.right .ruby .hljs-title .hljs-keyword{color:#81a2be}.right .hljs-keyword,.right .javascript .hljs-function{color:#b294bb}.right .hljs{display:block;overflow-x:auto;background:#1d1f21;color:#c5c8c6;padding:.5em;-webkit-text-size-adjust:none}.right .coffeescript .javascript,.right .javascript .xml,.right .tex .hljs-formula,.right .xml .css,.right .xml .hljs-cdata,.right .xml .javascript,.right .xml .vbscript{opacity:.5}body{color:black;background:white;font:400 14px / 1.42 'Roboto',Helvetica,sans-serif}header{border-bottom:1px solid #f2f2f2;margin-bottom:12px}h1,h2,h3,h4,h5{color:black;margin:12px 0}h1 .permalink,h2 .permalink,h3 .permalink,h4 .permalink,h5 .permalink{margin-left:0;opacity:0;transition:opacity .25s ease}h1:hover .permalink,h2:hover .permalink,h3:hover .permalink,h4:hover .permalink,h5:hover .permalink{opacity:1}.triple h1 .permalink,.triple h2 .permalink,.triple h3 .permalink,.triple h4 .permalink,.triple h5 .permalink{opacity:.15}.triple h1:hover .permalink,.triple h2:hover .permalink,.triple h3:hover .permalink,.triple h4:hover .permalink,.triple h5:hover .permalink{opacity:.15}h1{font:200 36px 'Raleway',Helvetica,sans-serif;font-size:36px}h2{font:200 36px 'Raleway',Helvetica,sans-serif;font-size:30px}h3{font-size:100%;text-transform:uppercase}h5{font-size:100%;font-weight:normal}p{margin:0 0 10px}p.choices{line-height:1.6}a{color:#428bca;text-decoration:none}li p{margin:0}hr.split{border:0;height:1px;width:100%;padding-left:6px;margin:12px auto;background-image:linear-gradient(to right, rgba(0,0,0,0) 20%, rgba(0,0,0,0.2) 51.4%, rgba(255,255,255,0.2) 51.4%, rgba(255,255,255,0) 80%)}dl dt{float:left;width:130px;clear:left;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:700}dl dd{margin-left:150px}blockquote{color:rgba(0,0,0,0.5);font-size:15.5px;padding:10px 20px;margin:12px 0;border-left:5px solid #e8e8e8}blockquote p:last-child{margin-bottom:0}pre{background-color:#f5f5f5;padding:12px;border:1px solid #cfcfcf;border-radius:6px;overflow:auto}pre code{color:black;background-color:transparent;padding:0;border:none}code{color:#444;background-color:#f5f5f5;font:'Inconsolata',monospace;padding:1px 4px;border:1px solid #cfcfcf;border-radius:3px}ul,ol{padding-left:2em}table{border-collapse:collapse;border-spacing:0;margin-bottom:12px}table tr:nth-child(2n){background-color:#fafafa}table th,table td{padding:6px 12px;border:1px solid #e6e6e6}.text-muted{opacity:.5}.note,.warning{padding:.3em 1em;margin:1em 0;border-radius:2px;font-size:90%}.note h1,.warning h1,.note h2,.warning h2,.note h3,.warning h3,.note h4,.warning h4,.note h5,.warning h5,.note h6,.warning h6{font-family:200 36px 'Raleway',Helvetica,sans-serif;font-size:135%;font-weight:500}.note p,.warning p{margin:.5em 0}.note{color:black;background-color:#f0f6fb;border-left:4px solid #428bca}.note h1,.note h2,.note h3,.note h4,.note h5,.note h6{color:#428bca}.warning{color:black;background-color:#fbf1f0;border-left:4px solid #c9302c}.warning h1,.warning h2,.warning h3,.warning h4,.warning h5,.warning h6{color:#c9302c}header{margin-top:24px}nav{position:fixed;top:24px;bottom:0;overflow-y:auto}nav .resource-group{padding:0}nav .resource-group .heading{position:relative}nav .resource-group .heading .chevron{position:absolute;top:12px;right:12px;opacity:.5}nav .resource-group .heading a{display:block;color:black;opacity:.7;border-left:2px solid transparent;margin:0}nav .resource-group .heading a:hover{text-decoration:none;background-color:bad-color;border-left:2px solid black}nav ul{list-style-type:none;padding-left:0}nav ul a{display:block;font-size:13px;color:rgba(0,0,0,0.7);padding:8px 12px;border-top:1px solid #d9d9d9;border-left:2px solid transparent;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}nav ul a:hover{text-decoration:none;background-color:bad-color;border-left:2px solid black}nav ul>li{margin:0}nav ul>li:first-child{margin-top:-12px}nav ul>li:last-child{margin-bottom:-12px}nav ul ul a{padding-left:24px}nav ul ul li{margin:0}nav ul ul li:first-child{margin-top:0}nav ul ul li:last-child{margin-bottom:0}nav>div>div>ul>li:first-child>a{border-top:none}.preload *{transition:none !important}.pull-left{float:left}.pull-right{float:right}.badge{display:inline-block;float:right;min-width:10px;min-height:14px;padding:3px 7px;font-size:12px;color:#000;background-color:#f2f2f2;border-radius:10px;margin:-2px 0}.badge.get{color:#70bbe1;background-color:#d9edf7}.badge.head{color:#70bbe1;background-color:#d9edf7}.badge.options{color:#70bbe1;background-color:#d9edf7}.badge.put{color:#f0db70;background-color:#fcf8e3}.badge.patch{color:#f0db70;background-color:#fcf8e3}.badge.post{color:#93cd7c;background-color:#dff0d8}.badge.delete{color:#ce8383;background-color:#f2dede}.collapse-button{float:right}.collapse-button .close{display:none;color:#428bca;cursor:pointer}.collapse-button .open{color:#428bca;cursor:pointer}.collapse-button.show .close{display:inline}.collapse-button.show .open{display:none}.collapse-content{max-height:0;overflow:hidden;transition:max-height .3s ease-in-out}nav{width:220px}.container{max-width:940px;margin-left:auto;margin-right:auto}.container .row .content{margin-left:244px;width:696px}.container .row:after{content:'';display:block;clear:both}.container-fluid nav{width:22%}.container-fluid .row .content{margin-left:24%}.container-fluid.triple nav{width:16.5%;padding-right:1px}.container-fluid.triple .row .content{position:relative;margin-left:16.5%;padding-left:24px}.middle:before,.middle:after{content:'';display:table}.middle:after{clear:both}.middle{box-sizing:border-box;width:51.5%;padding-right:12px}.right{box-sizing:border-box;float:right;width:48.5%;padding-left:12px}.right a{color:#428bca}.right h1,.right h2,.right h3,.right h4,.right h5,.right p,.right div{color:white}.right pre{background-color:#1d1f21;border:1px solid #1d1f21}.right pre code{color:#c5c8c6}.right .description{margin-top:12px}.triple .resource-heading{font-size:125%}.definition{margin-top:12px;margin-bottom:12px}.definition .method{font-weight:bold}.definition .method.get{color:#2e8ab8}.definition .method.head{color:#2e8ab8}.definition .method.options{color:#2e8ab8}.definition .method.post{color:#56b82e}.definition .method.put{color:#b8a22e}.definition .method.patch{color:#b8a22e}.definition .method.delete{color:#b82e2e}.definition .uri{word-break:break-all;word-wrap:break-word}.definition .hostname{opacity:.5}.example-names{background-color:#eee;padding:12px;border-radius:6px}.example-names .tab-button{cursor:pointer;color:black;border:1px solid #ddd;padding:6px;margin-left:12px}.example-names .tab-button.active{background-color:#d5d5d5}.right .example-names{background-color:#444}.right .example-names .tab-button{color:white;border:1px solid #666;border-radius:6px}.right .example-names .tab-button.active{background-color:#5e5e5e}#nav-background{position:fixed;left:0;top:0;bottom:0;width:16.5%;padding-right:14.4px;background-color:#fbfbfb;border-right:1px solid #f0f0f0;z-index:-1}#right-panel-background{position:absolute;right:-12px;top:-12px;bottom:-12px;width:48.6%;background-color:#333;z-index:-1}@media (max-width:1200px){nav{width:198px}.container{max-width:840px}.container .row .content{margin-left:224px;width:606px}}@media (max-width:992px){nav{width:169.4px}.container{max-width:720px}.container .row .content{margin-left:194px;width:526px}}@media (max-width:768px){nav{display:none}.container{width:95%;max-width:none}.container .row .content,.container-fluid .row .content,.container-fluid.triple .row .content{margin-left:auto;margin-right:auto;width:95%}#nav-background{display:none}#right-panel-background{width:48.6%}}.back-to-top{position:fixed;z-index:1;bottom:0;right:24px;padding:4px 8px;color:rgba(0,0,0,0.5);background-color:#f2f2f2;text-decoration:none !important;border-top:1px solid #d9d9d9;border-left:1px solid #d9d9d9;border-right:1px solid #d9d9d9;border-top-left-radius:3px;border-top-right-radius:3px}.resource-group{padding:12px;margin-bottom:12px;background-color:white;border:1px solid #d9d9d9;border-radius:6px}.resource-group h2.group-heading,.resource-group .heading a{padding:12px;margin:-12px -12px 12px -12px;background-color:#f2f2f2;border-bottom:1px solid #d9d9d9;border-top-left-radius:6px;border-top-right-radius:6px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}.triple .content .resource-group{padding:0;border:none}.triple .content .resource-group h2.group-heading,.triple .content .resource-group .heading a{margin:0 0 12px 0;border:1px solid #d9d9d9}nav .resource-group .heading a{padding:12px;margin-bottom:0}nav .resource-group .collapse-content{padding:0}.action{margin-bottom:12px;padding:12px 12px 0 12px;overflow:hidden;border:1px solid transparent;border-radius:6px}.action h4.action-heading{padding:6px 12px;margin:-12px -12px 12px -12px;border-bottom:1px solid transparent;border-top-left-radius:6px;border-top-right-radius:6px;overflow:hidden}.action h4.action-heading .name{float:right;font-weight:normal;padding:6px 0}.action h4.action-heading .method{padding:6px 12px;margin-right:12px;border-radius:3px;display:inline-block}.action h4.action-heading .method.get{color:#fff;background-color:#337ab7}.action h4.action-heading .method.head{color:#fff;background-color:#337ab7}.action h4.action-heading .method.options{color:#fff;background-color:#337ab7}.action h4.action-heading .method.put{color:#fff;background-color:#ed9c28}.action h4.action-heading .method.patch{color:#fff;background-color:#ed9c28}.action h4.action-heading .method.post{color:#fff;background-color:#5cb85c}.action h4.action-heading .method.delete{color:#fff;background-color:#d9534f}.action h4.action-heading code{color:#444;background-color:#f5f5f5;border-color:#cfcfcf;font-weight:normal;word-break:break-all;display:inline-block;margin-top:2px}.action dl.inner{padding-bottom:2px}.action .title{border-bottom:1px solid white;margin:0 -12px -1px -12px;padding:12px}.action.get{border-color:#bce8f1}.action.get h4.action-heading{color:#337ab7;background:#d9edf7;border-bottom-color:#bce8f1}.action.head{border-color:#bce8f1}.action.head h4.action-heading{color:#337ab7;background:#d9edf7;border-bottom-color:#bce8f1}.action.options{border-color:#bce8f1}.action.options h4.action-heading{color:#337ab7;background:#d9edf7;border-bottom-color:#bce8f1}.action.post{border-color:#d6e9c6}.action.post h4.action-heading{color:#5cb85c;background:#dff0d8;border-bottom-color:#d6e9c6}.action.put{border-color:#faebcc}.action.put h4.action-heading{color:#ed9c28;background:#fcf8e3;border-bottom-color:#faebcc}.action.patch{border-color:#faebcc}.action.patch h4.action-heading{color:#ed9c28;background:#fcf8e3;border-bottom-color:#faebcc}.action.delete{border-color:#ebccd1}.action.delete h4.action-heading{color:#d9534f;background:#f2dede;border-bottom-color:#ebccd1}</style></head><body class="preload"><a href="#top" class="text-muted back-to-top"><i class="fa fa-toggle-up"></i>&nbsp;Back to top</a><div class="container"><div class="row"><nav><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#top">Overview</a></div><div class="collapse-content"><ul><li><a href="#header-validation-and-security-tokens">Validation And Security: Tokens</a></li><li><a href="#header-version-control">Version Control</a></li><li><a href="#header-create-a-new-user">Create A New User</a></li><li><a href="#header-login-a-user">Login A User</a></li><li><a href="#header-create-a-new-bus">Create A New Bus</a></li><li><a href="#header-get-all-buses">Get All Buses</a></li><li><a href="#header-get-all-buses-by-year">Get All Buses By Year</a></li><li><a href="#header-get-all-buses-by-manufacturer">Get All Buses By Manufacturer</a></li><li><a href="#header-get-all-buses-by-model">Get All Buses By Model</a></li><li><a href="#header-create-a-new-trip">Create A New Trip</a></li><li><a href="#header-get-all-trips">Get All Trips</a></li><li><a href="#header-get-all-trips-by-origin">Get All Trips By Origin</a></li><li><a href="#header-get-all-trips-by-destination">Get All Trips By Destination</a></li><li><a href="#header-cancel-a-trip">Cancel A Trip</a></li><li><a href="#header-create-a-new-booking">Create A New Booking</a></li><li><a href="#header-get-all-bookings">Get All Bookings</a></li><li><a href="#header-delete-a-booking">Delete A Booking</a></li><li><a href="#header-license">License</a></li></ul></div></div><p style="text-align: center; word-wrap: break-word;"><a href="https://parkerthegeniuschild.herokuapp.com/api/v1">https://parkerthegeniuschild.herokuapp.com/api/v1</a></p></nav><div class="content"><header><h1 id="top">WayFarer API</h1></header><p>WayFarer is a public bus transportation booking server. Users can register, login,
+and create a booking. The admins will be in charge of adding all the buses and
 creating the trips.</p>
-<p>This API is work in progress and if you will like to see a feature, you can <a href="mailto:parkerthegeniuschild@gmail.com">Send A Feature Request</a>.
-This page is updated frequently, so please check back for your favourite feature.</p>
-<h3 id="header-create-new-user">Create New User <a class="permalink" href="#header-create-new-user" aria-hidden="true">¶</a></h3>
+<p>This API is constantly updated with new features. If you will like to see a feature, you can send <a href="mailto:parkerthegeniuschild@gmail.com">Send A Feature Request</a>.</p>
+<h3 id="header-validation-and-security-tokens">Validation And Security: Tokens <a class="permalink" href="#header-validation-and-security-tokens" aria-hidden="true">¶</a></h3>
+<p>The endpoints in this API are protected and will require a valid token to access them. This token is generated after a successful User
+registration. The token will expire after one hour and users will need to generate a new token. This can be done
+by simply logging in again.</p>
+<p>Even with a valid token, some actions, such as, creating and deleting trips and the creation of buses, are protected
+and will require elevated privileges. When a user signs up, by default they are regular users and will have to be manually approved by an Admin.
+This is reflected in the token, and the user is prevented to accessing protected routes.</p>
+<h3 id="header-version-control">Version Control <a class="permalink" href="#header-version-control" aria-hidden="true">¶</a></h3>
+<p>WayFarer is hosted on <a href="https://github.com/parkerthegeniuschild/WayFarer_API">GitHub</a>. Run these commands to clone and start using the project</p>
+<p><code>$ git clone https://github.com/parkerthegeniuschild/WayFarer_API.git</code> <br>
+<code>$ cd WayFarer_API</code></p>
+<br>
+<h3 id="header-create-a-new-user">Create A New User <a class="permalink" href="#header-create-a-new-user" aria-hidden="true">¶</a></h3>
 <p><code>POST /auth/signup</code></p>
-<ul>
-<li>
-<p>Request (x-www-form-urlencoded)</p>
-<ul>
-<li>
-<p>Body</p>
-<pre><code>{
-      "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"parkerthegeniuschild@gmail.com"</span></span>,
-      "<span class="hljs-attribute">password</span>": <span class="hljs-value"><span class="hljs-string">"P@ssw0rd"</span></span>,
-      "<span class="hljs-attribute">first_name</span>": <span class="hljs-value"><span class="hljs-string">"Mitchell"</span></span>,
-      "<span class="hljs-attribute">last_name</span>": <span class="hljs-value"><span class="hljs-string">"Patrick"</span>
-  </span>}</code></pre>
-</li>
-</ul>
-</li>
-<li>
-<p>Response 201 (application/json)</p>
-<ul>
-<li>
-<p>Body</p>
-<pre><code>{
-      "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"success"</span></span>,
-      "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
-          "<span class="hljs-attribute">user_id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
-          "<span class="hljs-attribute">first_name</span>": <span class="hljs-value"><span class="hljs-string">"Mitchell"</span></span>,
-          "<span class="hljs-attribute">last_name</span>": <span class="hljs-value"><span class="hljs-string">"Patrick"</span></span>,
-          "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"parkerthegeniuschild@gmail.com"</span></span>,
-          "<span class="hljs-attribute">is_admin</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
-          "<span class="hljs-attribute">created_on</span>": <span class="hljs-value"><span class="hljs-string">"2019-07-15T21:01:38.052Z"</span></span>,
-          "<span class="hljs-attribute">modified_on</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
-          "<span class="hljs-attribute">token</span>": <span class="hljs-value"><span class="hljs-string">"eyJhbGciOiJIUzI137373737363kpXVCJ9.eyJ1c2VyX2lkIjozLCJpc19hZG1pbiI6ZmFsc2UsImZpcnN0X25hbWUiOiJQYXJrZXIiLCJsYXN0X25hbWUiOiJDaGlsZCIsImVtYWlsIjoicGFya2VyQGdtYWlsLmNvbSIsImlhdCI6MTU2MzIyMjE4N30.Qam0l0LZKQqv9RJBxoUppeR9zlp3Dlmoe8NFsLtfv2o"</span></span>,
-      }
-  </span>}</code></pre>
-</li>
-</ul>
-</li>
-</ul>
+<pre><code>+ Request
+
+            {
+                <span class="hljs-string">"email"</span>: <span class="hljs-string">"parkerthegeniuschild<span class="hljs-variable">@gmail</span>.com"</span>,
+                <span class="hljs-string">"password"</span>: <span class="hljs-string">"P<span class="hljs-variable">@ssw0rd</span>"</span>,
+                <span class="hljs-string">"first_name"</span>: <span class="hljs-string">"Mitchell"</span>,
+                <span class="hljs-string">"last_name"</span>: <span class="hljs-string">"Patrick"</span>
+            }</code></pre>
+<pre><code>+ Valid Body:
++ Response <span class="hljs-number">201</span>
+
+            {
+                <span class="hljs-string">"status"</span>: <span class="hljs-string">"success"</span>,
+                <span class="hljs-string">"data"</span>: {
+                    <span class="hljs-string">"user_id"</span>: <span class="hljs-number">1</span>,
+                    <span class="hljs-string">"first_name"</span>: <span class="hljs-string">"Mitchell"</span>,
+                    <span class="hljs-string">"last_name"</span>: <span class="hljs-string">"Patrick"</span>,
+                    <span class="hljs-string">"email"</span>: <span class="hljs-string">"parkerthegeniuschild@gmail.com"</span>,
+                    <span class="hljs-string">"is_admin"</span>: <span class="hljs-literal">false</span>,
+                    <span class="hljs-string">"created_on"</span>: <span class="hljs-string">"2019-07-15T21:01:38.052Z"</span>,
+                    <span class="hljs-string">"modified_on"</span>: null,
+                    <span class="hljs-string">"token"</span>: <span class="hljs-string">"eyJhbGciOiJIUzI137373737363kpXVCJ9.eyJ1c2VyX2lkIjozLCJpc19hZG1pbiI6ZmFsc2UsImZpcnN0X25hbWUiOiJQYXJrZXIiLCJsYXN0X25hbWUiOiJDaGlsZCIsImVtYWlsIjoicGFya2VyQGdtYWlsLmNvbSIsImlhdCI6MTU2MzIyMjE4N30.Qam0l0LZKQqv9RJBxoUppeR9zlp3Dlmoe8NFsLtfv2o"</span>,
+                }
+            }</code></pre>
+<pre><code>+ Malformed <span class="hljs-keyword">Body:
+</span>+ Response <span class="hljs-number">400</span>
+
+            {
+                <span class="hljs-string">"status"</span>: <span class="hljs-string">"error"</span>,
+                <span class="hljs-string">"error"</span>: [
+                    <span class="hljs-string">"First Name is required"</span>,
+                    <span class="hljs-string">"Last Name is required"</span>,
+                    <span class="hljs-string">"Password is required"</span>
+                ]
+            }</code></pre>
 <h3 id="header-login-a-user">Login A User <a class="permalink" href="#header-login-a-user" aria-hidden="true">¶</a></h3>
 <p><code>POST /auth/signin</code></p>
-<ul>
-<li>
-<p>Request (x-www-form-urlencoded)</p>
-<ul>
-<li>
-<p>Body</p>
-<pre><code>{
-      "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"parkerthegeniuschild@gmail.com"</span></span>,
-      "<span class="hljs-attribute">password</span>": <span class="hljs-value"><span class="hljs-string">"P@ssw0rd"</span></span>,
-  }</code></pre>
-</li>
-</ul>
-</li>
-<li>
-<p>Response 200 (application/json)</p>
-<ul>
-<li>
-<p>Body</p>
-<pre><code>{
-      "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"success"</span></span>,
-      "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
-          "<span class="hljs-attribute">user_id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
-          "<span class="hljs-attribute">first_name</span>": <span class="hljs-value"><span class="hljs-string">"Mitchell"</span></span>,
-          "<span class="hljs-attribute">last_name</span>": <span class="hljs-value"><span class="hljs-string">"Patrick"</span></span>,
-          "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"parkerthegeniuschild@gmail.com"</span></span>,
-          "<span class="hljs-attribute">is_admin</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
-          "<span class="hljs-attribute">created_on</span>": <span class="hljs-value"><span class="hljs-string">"2019-07-15T21:01:38.052Z"</span></span>,
-          "<span class="hljs-attribute">modified_on</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
-          "<span class="hljs-attribute">token</span>": <span class="hljs-value"><span class="hljs-string">"eyJhbGciOiJIUzI137373737363kpXVCJ9.eyJ1c2VyX2lkIjozLCJpc19hZG1pbiI6ZmFsc2UsImZpcnN0X25hbWUiOiJQYXJrZXIiLCJsYXN0X25hbWUiOiJDaGlsZCIsImVtYWlsIjoicGFya2VyQGdtYWlsLmNvbSIsImlhdCI6MTU2MzIyMjE4N30.Qam0l0LZKQqv9RJBxoUppeR9zlp3Dlmoe8NFsLtfv2o"</span></span>,
-      }
-  </span>}</code></pre>
-</li>
-</ul>
-</li>
-</ul>
+<pre><code>+ Request
+
+            {
+                <span class="hljs-string">"email"</span>: <span class="hljs-string">"parkerthegeniuschild<span class="hljs-variable">@gmail</span>.com"</span>,
+                <span class="hljs-string">"password"</span>: <span class="hljs-string">"P<span class="hljs-variable">@ssw0rd</span>"</span>,
+            }</code></pre>
+<pre><code>+ Valid Credentials:
++ Response <span class="hljs-number">201</span>
+
+
+            {
+                <span class="hljs-string">"status"</span>: <span class="hljs-string">"success"</span>,
+                <span class="hljs-string">"data"</span>: {
+                    <span class="hljs-string">"user_id"</span>: <span class="hljs-number">1</span>,
+                    <span class="hljs-string">"first_name"</span>: <span class="hljs-string">"Mitchell"</span>,
+                    <span class="hljs-string">"last_name"</span>: <span class="hljs-string">"Patrick"</span>,
+                    <span class="hljs-string">"email"</span>: <span class="hljs-string">"parkerthegeniuschild@gmail.com"</span>,
+                    <span class="hljs-string">"is_admin"</span>: <span class="hljs-literal">false</span>,
+                    <span class="hljs-string">"created_on"</span>: <span class="hljs-string">"2019-07-15T21:01:38.052Z"</span>,
+                    <span class="hljs-string">"modified_on"</span>: null,
+                    <span class="hljs-string">"token"</span>: <span class="hljs-string">"eyJhbGciOiJIUzI137373737363kpXVCJ9.eyJ1c2VyX2lkIjozLCJpc19hZG1pbiI6ZmFsc2UsImZpcnN0X25hbWUiOiJQYXJrZXIiLCJsYXN0X25hbWUiOiJDaGlsZCIsImVtYWlsIjoicGFya2VyQGdtYWlsLmNvbSIsImlhdCI6MTU2MzIyMjE4N30.Qam0l0LZKQqv9RJBxoUppeR9zlp3Dlmoe8NFsLtfv2o"</span>,
+                }
+            }</code></pre>
+<pre><code>+ Wrong Credentials:
++ Response <span class="hljs-number">401</span>
+
+            {
+                <span class="hljs-string">"status"</span>: <span class="hljs-string">"error"</span>,
+                <span class="hljs-string">"error"</span>: <span class="hljs-string">"Your password is incorrect"</span>
+            }</code></pre>
+<pre><code>+ <span class="hljs-class">Unregistered</span> <span class="hljs-class">Credentials</span>:
++ <span class="hljs-class">Response</span> <span class="hljs-number">401</span>
+
+            {
+                <span class="hljs-comment">"status"</span>: <span class="hljs-comment">"error"</span>,
+                <span class="hljs-comment">"error"</span>: <span class="hljs-comment">"You are not a registered member"</span>
+            }</code></pre>
+<pre><code>+ Malformed Input:
++ Response <span class="hljs-number">400</span>
+
+            {
+                <span class="hljs-string">"status"</span>: <span class="hljs-string">"error"</span>,
+                <span class="hljs-string">"error"</span>: [
+                    <span class="hljs-string">"Password is required"</span>
+                ]
+            }</code></pre>
 <h3 id="header-create-a-new-bus">Create A New Bus <a class="permalink" href="#header-create-a-new-bus" aria-hidden="true">¶</a></h3>
 <p><code>POST /buses</code></p>
-<ul>
-<li>
-<p>Request (x-www-form-urlencoded)</p>
-<ul>
-<li>
-<p>Body</p>
-<pre><code>{
-      "<span class="hljs-attribute">number_plate</span>": <span class="hljs-value"><span class="hljs-string">"FST 78 KJA"</span></span>,
-      "<span class="hljs-attribute">manufacturer</span>":  <span class="hljs-value"><span class="hljs-string">"Nissan"</span>
-      <span class="hljs-string">"model"</span>: <span class="hljs-string">"Roadstar"</span></span>,
-      "<span class="hljs-attribute">year</span>": <span class="hljs-value"><span class="hljs-number">2008</span></span>,
-      "<span class="hljs-attribute">capacity</span>": <span class="hljs-value"><span class="hljs-number">45</span>
-  </span>}</code></pre>
-</li>
-</ul>
-</li>
-<li>
-<p>Response 201 (application/json)</p>
-<ul>
-<li>
-<p>Body</p>
-<pre><code>{
-      "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"success"</span></span>,
-      "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
-          "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">5</span></span>,
-          "<span class="hljs-attribute">number_plate</span>": <span class="hljs-value"><span class="hljs-string">"FST 78 KJA"</span></span>,
-          "<span class="hljs-attribute">model</span>": <span class="hljs-value"><span class="hljs-string">"Roadstar"</span></span>,
-          "<span class="hljs-attribute">year</span>": <span class="hljs-value"><span class="hljs-number">2008</span></span>,
-          "<span class="hljs-attribute">manufacturer</span>": <span class="hljs-value"><span class="hljs-string">"Nissan"</span></span>,
-          "<span class="hljs-attribute">capacity</span>": <span class="hljs-value"><span class="hljs-number">45</span></span>,
-          "<span class="hljs-attribute">created_on</span>": <span class="hljs-value"><span class="hljs-string">"2019-07-15T22:23:53.547Z"</span></span>,
-          "<span class="hljs-attribute">modified_on</span>": <span class="hljs-value"><span class="hljs-literal">null</span>
-      </span>}
-  </span>}</code></pre>
-</li>
-</ul>
-</li>
-</ul>
+<pre><code>+ Request
+
+            {
+                <span class="hljs-string">"number_plate"</span>: <span class="hljs-string">"FST 78 KJA"</span>,
+                <span class="hljs-string">"manufacturer"</span>:  <span class="hljs-string">"Nissan"</span>
+                <span class="hljs-string">"model"</span>: <span class="hljs-string">"Roadstar"</span>,
+                <span class="hljs-string">"year"</span>: <span class="hljs-number">2008</span>,
+                <span class="hljs-string">"capacity"</span>: <span class="hljs-number">45</span>
+            }</code></pre>
+<pre><code>+ Valid Body:
++ Response <span class="hljs-number">201</span>
+
+            {
+                <span class="hljs-string">"status"</span>: <span class="hljs-string">"success"</span>,
+                <span class="hljs-string">"data"</span>: {
+                    <span class="hljs-string">"id"</span>: <span class="hljs-number">5</span>,
+                    <span class="hljs-string">"number_plate"</span>: <span class="hljs-string">"FST 78 KJA"</span>,
+                    <span class="hljs-string">"model"</span>: <span class="hljs-string">"Roadstar"</span>,
+                    <span class="hljs-string">"year"</span>: <span class="hljs-number">2008</span>,
+                    <span class="hljs-string">"manufacturer"</span>: <span class="hljs-string">"Nissan"</span>,
+                    <span class="hljs-string">"capacity"</span>: <span class="hljs-number">45</span>,
+                    <span class="hljs-string">"created_on"</span>: <span class="hljs-string">"2019-07-15T22:23:53.547Z"</span>,
+                    <span class="hljs-string">"modified_on"</span>: null
+                }
+            }</code></pre>
 <h3 id="header-get-all-buses">Get All Buses <a class="permalink" href="#header-get-all-buses" aria-hidden="true">¶</a></h3>
 <p><code>GET /buses</code></p>
-<ul>
-<li>
-<p>Response 200 (application/json)</p>
-<ul>
-<li>
-<p>Body</p>
-<pre><code>{
-      "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"success"</span></span>,
-      "<span class="hljs-attribute">data</span>": <span class="hljs-value">[
-          {
-              "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
-              "<span class="hljs-attribute">number_plate</span>": <span class="hljs-value"><span class="hljs-string">"FST 78 KJA"</span></span>,
-              "<span class="hljs-attribute">model</span>": <span class="hljs-value"><span class="hljs-string">"Roadster"</span></span>,
-              "<span class="hljs-attribute">year</span>": <span class="hljs-value"><span class="hljs-number">2015</span></span>,
-              "<span class="hljs-attribute">manufacturer</span>": <span class="hljs-value"><span class="hljs-string">"Nissan"</span></span>,
-              "<span class="hljs-attribute">capacity</span>": <span class="hljs-value"><span class="hljs-number">45</span></span>,
-              "<span class="hljs-attribute">created_on</span>": <span class="hljs-value"><span class="hljs-string">"2019-07-15T21:00:32.563Z"</span></span>,
-              "<span class="hljs-attribute">modified_on</span>": <span class="hljs-value"><span class="hljs-literal">null</span>
-          </span>},
-          {
-              "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
-              "<span class="hljs-attribute">number_plate</span>": <span class="hljs-value"><span class="hljs-string">"AGL 63 ISK"</span></span>,
-              "<span class="hljs-attribute">model</span>": <span class="hljs-value"><span class="hljs-string">"Tacoma"</span></span>,
-              "<span class="hljs-attribute">year</span>": <span class="hljs-value"><span class="hljs-number">2018</span></span>,
-              "<span class="hljs-attribute">manufacturer</span>": <span class="hljs-value"><span class="hljs-string">"Toyota"</span></span>,
-              "<span class="hljs-attribute">capacity</span>": <span class="hljs-value"><span class="hljs-number">55</span></span>,
-              "<span class="hljs-attribute">created_on</span>": <span class="hljs-value"><span class="hljs-string">"2019-07-15T21:00:32.563Z"</span></span>,
-              "<span class="hljs-attribute">modified_on</span>": <span class="hljs-value"><span class="hljs-literal">null</span>
-          </span>},
-          {
-              "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
-              "<span class="hljs-attribute">number_plate</span>": <span class="hljs-value"><span class="hljs-string">"BCD 77 AJS"</span></span>,
-              "<span class="hljs-attribute">model</span>": <span class="hljs-value"><span class="hljs-string">"Lumin"</span></span>,
-              "<span class="hljs-attribute">year</span>": <span class="hljs-value"><span class="hljs-number">2012</span></span>,
-              "<span class="hljs-attribute">manufacturer</span>": <span class="hljs-value"><span class="hljs-string">"Ford"</span></span>,
-              "<span class="hljs-attribute">capacity</span>": <span class="hljs-value"><span class="hljs-number">65</span></span>,
-              "<span class="hljs-attribute">created_on</span>": <span class="hljs-value"><span class="hljs-string">"2019-07-15T21:00:32.563Z"</span></span>,
-              "<span class="hljs-attribute">modified_on</span>": <span class="hljs-value"><span class="hljs-literal">null</span>
-          </span>}
-      ]
-  </span>}</code></pre>
-</li>
-</ul>
-</li>
-</ul>
+<pre><code>+ Response <span class="hljs-number">200</span>
+
+            {
+                <span class="hljs-string">"status"</span>: <span class="hljs-string">"success"</span>,
+                <span class="hljs-string">"data"</span>: [
+                    {
+                        <span class="hljs-string">"id"</span>: <span class="hljs-number">1</span>,
+                        <span class="hljs-string">"number_plate"</span>: <span class="hljs-string">"FST 78 KJA"</span>,
+                        <span class="hljs-string">"model"</span>: <span class="hljs-string">"Roadster"</span>,
+                        <span class="hljs-string">"year"</span>: <span class="hljs-number">2015</span>,
+                        <span class="hljs-string">"manufacturer"</span>: <span class="hljs-string">"Nissan"</span>,
+                        <span class="hljs-string">"capacity"</span>: <span class="hljs-number">45</span>,
+                        <span class="hljs-string">"created_on"</span>: <span class="hljs-string">"2019-07-15T21:00:32.563Z"</span>,
+                        <span class="hljs-string">"modified_on"</span>: null
+                    },
+                    {
+                        <span class="hljs-string">"id"</span>: <span class="hljs-number">2</span>,
+                        <span class="hljs-string">"number_plate"</span>: <span class="hljs-string">"AGL 63 ISK"</span>,
+                        <span class="hljs-string">"model"</span>: <span class="hljs-string">"Tacoma"</span>,
+                        <span class="hljs-string">"year"</span>: <span class="hljs-number">2018</span>,
+                        <span class="hljs-string">"manufacturer"</span>: <span class="hljs-string">"Toyota"</span>,
+                        <span class="hljs-string">"capacity"</span>: <span class="hljs-number">55</span>,
+                        <span class="hljs-string">"created_on"</span>: <span class="hljs-string">"2019-07-15T21:00:32.563Z"</span>,
+                        <span class="hljs-string">"modified_on"</span>: null
+                    },
+                    {
+                        <span class="hljs-string">"id"</span>: <span class="hljs-number">3</span>,
+                        <span class="hljs-string">"number_plate"</span>: <span class="hljs-string">"BCD 77 AJS"</span>,
+                        <span class="hljs-string">"model"</span>: <span class="hljs-string">"Lumin"</span>,
+                        <span class="hljs-string">"year"</span>: <span class="hljs-number">2012</span>,
+                        <span class="hljs-string">"manufacturer"</span>: <span class="hljs-string">"Ford"</span>,
+                        <span class="hljs-string">"capacity"</span>: <span class="hljs-number">65</span>,
+                        <span class="hljs-string">"created_on"</span>: <span class="hljs-string">"2019-07-15T21:00:32.563Z"</span>,
+                        <span class="hljs-string">"modified_on"</span>: null
+                    }
+                ]
+            }</code></pre>
+<h4 id="header-get-all-buses-by-year">Get All Buses By Year <a class="permalink" href="#header-get-all-buses-by-year" aria-hidden="true">¶</a></h4>
+<p><code>GET /buses?year={query}</code></p>
+<pre><code>+ Query: <span class="hljs-number">2012</span>
++ Bus(es) Found:
++ Response <span class="hljs-number">200</span>
+
+            {
+                <span class="hljs-string">"status"</span>: <span class="hljs-string">"success"</span>,
+                <span class="hljs-string">"data"</span>: [
+                    {
+                        <span class="hljs-string">"id"</span>: <span class="hljs-number">3</span>,
+                        <span class="hljs-string">"number_plate"</span>: <span class="hljs-string">"BCD 77 AJS"</span>,
+                        <span class="hljs-string">"model"</span>: <span class="hljs-string">"Lumin"</span>,
+                        <span class="hljs-string">"year"</span>: <span class="hljs-number">2012</span>,
+                        <span class="hljs-string">"manufacturer"</span>: <span class="hljs-string">"Ford"</span>,
+                        <span class="hljs-string">"capacity"</span>: <span class="hljs-number">65</span>,
+                        <span class="hljs-string">"created_on"</span>: <span class="hljs-string">"2019-07-16T15:52:32.667Z"</span>,
+                        <span class="hljs-string">"modified_on"</span>: null
+                    }
+                ]
+            }</code></pre>
+<pre><code>+ Bus <span class="hljs-keyword">Not</span> Found:
++ <span class="hljs-built_in">Response</span> <span class="hljs-number">200</span>
+            
+            {
+                <span class="hljs-string">"status"</span>: <span class="hljs-string">"success"</span>,
+                <span class="hljs-string">"data"</span>: <span class="hljs-string">"No buses found"</span>
+            }</code></pre>
+<pre><code>+ Malformed Query
++ Response <span class="hljs-number">400</span>
+    
+            {
+                <span class="hljs-string">"status"</span>: <span class="hljs-string">"error"</span>,
+                <span class="hljs-string">"error"</span>: <span class="hljs-string">"Bad request: Your query is malformed"</span>
+            }</code></pre>
+<h4 id="header-get-all-buses-by-manufacturer">Get All Buses By Manufacturer <a class="permalink" href="#header-get-all-buses-by-manufacturer" aria-hidden="true">¶</a></h4>
+<p><code>GET /buses?manufacturer={query}</code></p>
+<pre><code>+ Query: <span class="hljs-string">"Ford"</span>
++ Bus(es) Found:
++ Response <span class="hljs-number">200</span>
+
+            {
+                <span class="hljs-string">"status"</span>: <span class="hljs-string">"success"</span>,
+                <span class="hljs-string">"data"</span>: [
+                    {
+                        <span class="hljs-string">"id"</span>: <span class="hljs-number">3</span>,
+                        <span class="hljs-string">"number_plate"</span>: <span class="hljs-string">"BCD 77 AJS"</span>,
+                        <span class="hljs-string">"model"</span>: <span class="hljs-string">"Lumin"</span>,
+                        <span class="hljs-string">"year"</span>: <span class="hljs-number">2012</span>,
+                        <span class="hljs-string">"manufacturer"</span>: <span class="hljs-string">"Ford"</span>,
+                        <span class="hljs-string">"capacity"</span>: <span class="hljs-number">65</span>,
+                        <span class="hljs-string">"created_on"</span>: <span class="hljs-string">"2019-07-16T15:52:32.667Z"</span>,
+                        <span class="hljs-string">"modified_on"</span>: null
+                    }
+                ]
+            }</code></pre>
+<h4 id="header-get-all-buses-by-model">Get All Buses By Model <a class="permalink" href="#header-get-all-buses-by-model" aria-hidden="true">¶</a></h4>
+<p><code>GET /buses?model={query}</code></p>
+<pre><code>+ Query: <span class="hljs-string">"Tacoma"</span>
++ Bus(es) Found:
++ Response <span class="hljs-number">200</span>
+
+            {
+                <span class="hljs-string">"status"</span>: <span class="hljs-string">"success"</span>,
+                <span class="hljs-string">"data"</span>: [
+                    {
+                        <span class="hljs-string">"id"</span>: <span class="hljs-number">2</span>,
+                        <span class="hljs-string">"number_plate"</span>: <span class="hljs-string">"AGL 63 ISK"</span>,
+                        <span class="hljs-string">"model"</span>: <span class="hljs-string">"Tacoma"</span>,
+                        <span class="hljs-string">"year"</span>: <span class="hljs-number">2018</span>,
+                        <span class="hljs-string">"manufacturer"</span>: <span class="hljs-string">"Toyota"</span>,
+                        <span class="hljs-string">"capacity"</span>: <span class="hljs-number">55</span>,
+                        <span class="hljs-string">"created_on"</span>: <span class="hljs-string">"2019-07-16T15:52:32.667Z"</span>,
+                        <span class="hljs-string">"modified_on"</span>: null
+                    }
+                ]
+            }</code></pre>
 <h3 id="header-create-a-new-trip">Create A New Trip <a class="permalink" href="#header-create-a-new-trip" aria-hidden="true">¶</a></h3>
 <p><code>POST /trips</code></p>
-<ul>
-<li>
-<p>Request (x-www-form-urlencoded)</p>
-<ul>
-<li>
-<p>Body</p>
-<pre><code>{
-      "<span class="hljs-attribute">bus_id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
-      "<span class="hljs-attribute">origin</span>": <span class="hljs-value"><span class="hljs-string">"Lagos"</span></span>,
-      "<span class="hljs-attribute">destination</span>": <span class="hljs-value"><span class="hljs-string">"Kano"</span></span>,
-      "<span class="hljs-attribute">trip_date</span>": <span class="hljs-value"><span class="hljs-string">"2019-05-21"</span></span>,
-      "<span class="hljs-attribute">fare</span>": <span class="hljs-value"><span class="hljs-number">7500.13</span>
-  </span>}</code></pre>
-</li>
-</ul>
-</li>
-<li>
-<p>Response 201 (application/json)</p>
-<ul>
-<li>
-<p>Body</p>
-<pre><code>{
-      "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"success"</span></span>,
-      "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
-          "<span class="hljs-attribute">trip_id</span>": <span class="hljs-value"><span class="hljs-number">5</span></span>,
-          "<span class="hljs-attribute">bus_id</span>": <span class="hljs-value"><span class="hljs-string">"1"</span></span>,
-          "<span class="hljs-attribute">origin</span>": <span class="hljs-value"><span class="hljs-string">"Lagos"</span></span>,
-          "<span class="hljs-attribute">destination</span>": <span class="hljs-value"><span class="hljs-string">"Port"</span></span>,
-          "<span class="hljs-attribute">fare</span>": <span class="hljs-value"><span class="hljs-string">"7500.13"</span></span>,
-          "<span class="hljs-attribute">trip_date</span>": <span class="hljs-value"><span class="hljs-string">"2019-05-21"</span></span>,
-          "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"active"</span>
-      </span>}
-  </span>}</code></pre>
-</li>
-</ul>
-</li>
-</ul>
+<pre><code>+ Request
+
+            {
+                <span class="hljs-string">"bus_id"</span>: <span class="hljs-number">1</span>,
+                <span class="hljs-string">"origin"</span>: <span class="hljs-string">"Lagos"</span>,
+                <span class="hljs-string">"destination"</span>: <span class="hljs-string">"Kano"</span>,
+                <span class="hljs-string">"trip_date"</span>: <span class="hljs-string">"2019-05-21"</span>,
+                <span class="hljs-string">"fare"</span>: <span class="hljs-number">7500.13</span>
+            }</code></pre>
+<pre><code>+ Valid Body:
++ Response <span class="hljs-number">201</span>
+
+            {
+                <span class="hljs-string">"status"</span>: <span class="hljs-string">"success"</span>,
+                <span class="hljs-string">"data"</span>: {
+                    <span class="hljs-string">"trip_id"</span>: <span class="hljs-number">5</span>,
+                    <span class="hljs-string">"bus_id"</span>: <span class="hljs-string">"1"</span>,
+                    <span class="hljs-string">"origin"</span>: <span class="hljs-string">"Lagos"</span>,
+                    <span class="hljs-string">"destination"</span>: <span class="hljs-string">"Kano"</span>,
+                    <span class="hljs-string">"fare"</span>: <span class="hljs-string">"7500.13"</span>,
+                    <span class="hljs-string">"trip_date"</span>: <span class="hljs-string">"2019-05-21"</span>,
+                    <span class="hljs-string">"status"</span>: <span class="hljs-string">"active"</span>
+                }
+            }</code></pre>
+<pre><code>+ Malformed <span class="hljs-keyword">Body:
+</span>+ Response <span class="hljs-number">400</span>
+
+            {
+                <span class="hljs-string">"status"</span>: <span class="hljs-string">"error"</span>,
+                <span class="hljs-string">"error"</span>: [
+                    <span class="hljs-string">"Bus ID is required"</span>,
+                    <span class="hljs-string">"Origin is required"</span>,
+                    <span class="hljs-string">"Destination is required"</span>,
+                    <span class="hljs-string">"Trip Date is required"</span>,
+                    <span class="hljs-string">"Fare is required"</span>
+                ]
+            }</code></pre>
+<pre><code>+ <span class="hljs-keyword">For</span> Nonexistent Bus:
++ <span class="hljs-built_in">Response</span> <span class="hljs-number">400</span>
+
+            {
+                <span class="hljs-string">"status"</span>: <span class="hljs-string">"error"</span>,
+                <span class="hljs-string">"error"</span>: <span class="hljs-string">"Error: Cannot create trip for nonexistent bus."</span>
+            }</code></pre>
 <h3 id="header-get-all-trips">Get All Trips <a class="permalink" href="#header-get-all-trips" aria-hidden="true">¶</a></h3>
 <p><code>GET /trips</code></p>
-<ul>
-<li>
-<p>Response 200 (application/json)</p>
-<ul>
-<li>
-<p>Body</p>
-<pre><code>{
-      "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"success"</span></span>,
-      "<span class="hljs-attribute">data</span>": <span class="hljs-value">[
-          {
-              "<span class="hljs-attribute">trip_id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
-              "<span class="hljs-attribute">bus_id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
-              "<span class="hljs-attribute">origin</span>": <span class="hljs-value"><span class="hljs-string">"Lagos"</span></span>,
-              "<span class="hljs-attribute">destination</span>": <span class="hljs-value"><span class="hljs-string">"Abuja"</span></span>,
-              "<span class="hljs-attribute">fare</span>": <span class="hljs-value"><span class="hljs-number">3547.29</span></span>,
-              "<span class="hljs-attribute">trip_date</span>": <span class="hljs-value"><span class="hljs-string">"2019-07-30T00:00:00.000Z"</span></span>,
-              "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"active"</span>
-          </span>},
-          {
-              "<span class="hljs-attribute">trip_id</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
-              "<span class="hljs-attribute">bus_id</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
-              "<span class="hljs-attribute">origin</span>": <span class="hljs-value"><span class="hljs-string">"Abuja"</span></span>,
-              "<span class="hljs-attribute">destination</span>": <span class="hljs-value"><span class="hljs-string">"Lagos"</span></span>,
-              "<span class="hljs-attribute">fare</span>": <span class="hljs-value"><span class="hljs-number">6271.19</span></span>,
-              "<span class="hljs-attribute">trip_date</span>": <span class="hljs-value"><span class="hljs-string">"2019-07-22T00:00:00.000Z"</span></span>,
-              "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"active"</span>
-          </span>}
-      ]
-  </span>}</code></pre>
-</li>
-</ul>
-</li>
-</ul>
+<pre><code>+ Response <span class="hljs-number">200</span>
+
+            {
+                <span class="hljs-string">"status"</span>: <span class="hljs-string">"success"</span>,
+                <span class="hljs-string">"data"</span>: [
+                    {
+                        <span class="hljs-string">"trip_id"</span>: <span class="hljs-number">1</span>,
+                        <span class="hljs-string">"bus_id"</span>: <span class="hljs-number">1</span>,
+                        <span class="hljs-string">"origin"</span>: <span class="hljs-string">"Lagos"</span>,
+                        <span class="hljs-string">"destination"</span>: <span class="hljs-string">"Abuja"</span>,
+                        <span class="hljs-string">"fare"</span>: <span class="hljs-number">3547.29</span>,
+                        <span class="hljs-string">"trip_date"</span>: <span class="hljs-string">"2019-07-30T00:00:00.000Z"</span>,
+                        <span class="hljs-string">"status"</span>: <span class="hljs-string">"active"</span>
+                    },
+                    {
+                        <span class="hljs-string">"trip_id"</span>: <span class="hljs-number">2</span>,
+                        <span class="hljs-string">"bus_id"</span>: <span class="hljs-number">2</span>,
+                        <span class="hljs-string">"origin"</span>: <span class="hljs-string">"Abuja"</span>,
+                        <span class="hljs-string">"destination"</span>: <span class="hljs-string">"Lagos"</span>,
+                        <span class="hljs-string">"fare"</span>: <span class="hljs-number">6271.19</span>,
+                        <span class="hljs-string">"trip_date"</span>: <span class="hljs-string">"2019-07-22T00:00:00.000Z"</span>,
+                        <span class="hljs-string">"status"</span>: <span class="hljs-string">"active"</span>
+                    }
+                ]
+            }</code></pre>
+<h4 id="header-get-all-trips-by-origin">Get All Trips By Origin <a class="permalink" href="#header-get-all-trips-by-origin" aria-hidden="true">¶</a></h4>
+<p><code>GET /trips?origin={query}</code></p>
+<pre><code>+ Query: <span class="hljs-string">"Lagos"</span>
++ Trip(s) Found:
++ Response <span class="hljs-number">200</span>
+            
+            {
+                <span class="hljs-string">"status"</span>: <span class="hljs-string">"success"</span>,
+                <span class="hljs-string">"data"</span>: [
+                    {
+                        <span class="hljs-string">"id"</span>: <span class="hljs-number">1</span>,
+                        <span class="hljs-string">"bus_id"</span>: <span class="hljs-number">1</span>,
+                        <span class="hljs-string">"origin"</span>: <span class="hljs-string">"Lagos"</span>,
+                        <span class="hljs-string">"destination"</span>: <span class="hljs-string">"Abuja"</span>,
+                        <span class="hljs-string">"fare"</span>: <span class="hljs-number">3547.29</span>,
+                        <span class="hljs-string">"trip_date"</span>: <span class="hljs-string">"2019-07-30"</span>,
+                        <span class="hljs-string">"status"</span>: <span class="hljs-string">"active"</span>
+                    }
+                ]
+}</code></pre>
+<pre><code>+ Trip <span class="hljs-keyword">Not</span> Found:
++ <span class="hljs-built_in">Response</span> <span class="hljs-number">200</span>
+
+            {
+                <span class="hljs-string">"status"</span>: <span class="hljs-string">"success"</span>,
+                <span class="hljs-string">"data"</span>: <span class="hljs-string">"No trips found"</span>
+            }</code></pre>
+<h4 id="header-get-all-trips-by-destination">Get All Trips By Destination <a class="permalink" href="#header-get-all-trips-by-destination" aria-hidden="true">¶</a></h4>
+<p><code>GET /trips?destination={query}</code></p>
+<pre><code>+ Query: <span class="hljs-string">"Abuja"</span>
++ Trip(s) Found:
++ Response <span class="hljs-number">200</span>
+
+            {
+                <span class="hljs-string">"status"</span>: <span class="hljs-string">"success"</span>,
+                <span class="hljs-string">"data"</span>: [
+                    {
+                        <span class="hljs-string">"id"</span>: <span class="hljs-number">1</span>,
+                        <span class="hljs-string">"bus_id"</span>: <span class="hljs-number">1</span>,
+                        <span class="hljs-string">"origin"</span>: <span class="hljs-string">"Lagos"</span>,
+                        <span class="hljs-string">"destination"</span>: <span class="hljs-string">"Abuja"</span>,
+                        <span class="hljs-string">"fare"</span>: <span class="hljs-number">3547.29</span>,
+                        <span class="hljs-string">"trip_date"</span>: <span class="hljs-string">"2019-07-30"</span>,
+                        <span class="hljs-string">"status"</span>: <span class="hljs-string">"active"</span>
+                    }
+                ]
+            }</code></pre>
 <h3 id="header-cancel-a-trip">Cancel A Trip <a class="permalink" href="#header-cancel-a-trip" aria-hidden="true">¶</a></h3>
-<p><code>PATCH /trips/{tripId}</code></p>
-<ul>
-<li>
-<p>Request (x-www-form-urlencoded)</p>
-<ul>
-<li>
-<p>Body</p>
-<pre><code>{
-      "<span class="hljs-attribute">trip_id</span>": <span class="hljs-value"><span class="hljs-number">5</span>
-  </span>}</code></pre>
-</li>
-</ul>
-</li>
-<li>
-<p>Response 20</p>
-<ul>
-<li>
-<p>Body</p>
-<pre><code>{
-      "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"success"</span></span>,
-      "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
-          "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"Trip cancelled successfully"</span>
-      </span>}
-  </span>}</code></pre>
-</li>
-</ul>
-</li>
-</ul>
+<p><code>PATCH /trips/{trip_id}</code></p>
+<pre><code>+ Request
+        
+            {
+                <span class="hljs-string">"trip_id"</span>: <span class="hljs-number">5</span>
+            }</code></pre>
+<pre><code>+ Valid Trip ID:
++ Response <span class="hljs-number">200</span>
+
+            {
+                <span class="hljs-string">"status"</span>: <span class="hljs-string">"success"</span>,
+                <span class="hljs-string">"data"</span>: {
+                    <span class="hljs-string">"message"</span>: <span class="hljs-string">"Trip cancelled successfully"</span>
+                }
+            }</code></pre>
+<pre><code>+ Invalid Trip ID:
++ Response <span class="hljs-number">404</span>
+            
+            {
+                <span class="hljs-string">"status"</span>: <span class="hljs-string">"error"</span>,
+                <span class="hljs-string">"error"</span>: <span class="hljs-string">"Trip does not exist"</span>
+            }</code></pre>
 <h3 id="header-create-a-new-booking">Create A New Booking <a class="permalink" href="#header-create-a-new-booking" aria-hidden="true">¶</a></h3>
 <p><code>POST /bookings</code></p>
-<ul>
-<li>
-<p>Request (x-www-form-urlencoded)</p>
-<ul>
-<li>
-<p>Body</p>
-<pre><code>{
-      <span class="hljs-string">"trip_id"</span>: <span class="hljs-number">3</span>,
-      <span class="hljs-string">"user_id: 1,</span>
-      <span class="hljs-string">"seat_number"</span>: <span class="hljs-number">11</span>
-  }</code></pre>
-</li>
-</ul>
-</li>
-<li>
-<p>Response 201 (application/json)</p>
-<ul>
-<li>
-<p>Body</p>
-<pre><code>{
-      "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"success"</span></span>,
-      "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
-          "<span class="hljs-attribute">booking_id</span>": <span class="hljs-value"><span class="hljs-number">6</span></span>,
-          "<span class="hljs-attribute">user_id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
-          "<span class="hljs-attribute">trip_id</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
-          "<span class="hljs-attribute">bus_id</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
-          "<span class="hljs-attribute">trip_date</span>": <span class="hljs-value"><span class="hljs-string">"2019-07-10T00:00:00.000Z"</span></span>,
-          "<span class="hljs-attribute">seat_number</span>": <span class="hljs-value"><span class="hljs-number">11</span></span>,
-          "<span class="hljs-attribute">first_name</span>": <span class="hljs-value"><span class="hljs-string">"Admin"</span></span>,
-          "<span class="hljs-attribute">last_name</span>": <span class="hljs-value"><span class="hljs-string">"User"</span></span>,
-          "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"admin@wayfarerapi.com"</span>
-      </span>}
-  </span>}</code></pre>
-</li>
-</ul>
-</li>
-</ul>
+<pre><code>You can specify <span class="hljs-operator">a</span> seat <span class="hljs-built_in">number</span> <span class="hljs-keyword">if</span> you wish. Without <span class="hljs-constant">one</span>, <span class="hljs-built_in">random</span> seat <span class="hljs-built_in">number</span> is assigned</code></pre>
+<pre><code>+ Request 
+            {
+                <span class="hljs-string">"trip_id"</span>: <span class="hljs-number">3</span>,
+                <span class="hljs-string">"seat_number"</span>: <span class="hljs-number">11</span>
+            }</code></pre>
+<pre><code>+ Valid Trip ID:
++ Response <span class="hljs-number">201</span>
+
+           {
+                <span class="hljs-string">"status"</span>: <span class="hljs-string">"success"</span>,
+                <span class="hljs-string">"data"</span>: {
+                    <span class="hljs-string">"id"</span>: <span class="hljs-number">7</span>,
+                    <span class="hljs-string">"user_id"</span>: <span class="hljs-number">2</span>,
+                    <span class="hljs-string">"trip_id"</span>: <span class="hljs-number">3</span>,
+                    <span class="hljs-string">"bus_id"</span>: <span class="hljs-number">3</span>,
+                    <span class="hljs-string">"trip_date"</span>: <span class="hljs-string">"2019-07-10"</span>,
+                    <span class="hljs-string">"seat_number"</span>: <span class="hljs-number">11</span>,
+                    <span class="hljs-string">"first_name"</span>: <span class="hljs-string">"Jane"</span>,
+                    <span class="hljs-string">"last_name"</span>: <span class="hljs-string">"Doe"</span>,
+                    <span class="hljs-string">"email"</span>: <span class="hljs-string">"janedoe@gmail.com"</span>
+                }
+            }</code></pre>
 <h3 id="header-get-all-bookings">Get All Bookings <a class="permalink" href="#header-get-all-bookings" aria-hidden="true">¶</a></h3>
 <p><code>GET /bookings</code></p>
-<ul>
-<li>
-<p>Response 200 (application/json)</p>
-<ul>
-<li>
-<p>Body</p>
-<pre><code>{
-      "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"success"</span></span>,
-      "<span class="hljs-attribute">data</span>": <span class="hljs-value">[
-          {
-              "<span class="hljs-attribute">booking_id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
-              "<span class="hljs-attribute">user_id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
-              "<span class="hljs-attribute">trip_id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
-              "<span class="hljs-attribute">bus_id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
-              "<span class="hljs-attribute">trip_date</span>": <span class="hljs-value"><span class="hljs-string">"2019-07-30T00:00:00.000Z"</span></span>,
-              "<span class="hljs-attribute">seat_number</span>": <span class="hljs-value"><span class="hljs-number">27</span></span>,
-              "<span class="hljs-attribute">first_name</span>": <span class="hljs-value"><span class="hljs-string">"John"</span></span>,
-              "<span class="hljs-attribute">last_name</span>": <span class="hljs-value"><span class="hljs-string">"Doe"</span></span>,
-              "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"johndoe@gmail.com"</span>
-          </span>},
-          {
-              "<span class="hljs-attribute">booking_id</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
-              "<span class="hljs-attribute">user_id</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
-              "<span class="hljs-attribute">trip_id</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
-              "<span class="hljs-attribute">bus_id</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
-              "<span class="hljs-attribute">trip_date</span>": <span class="hljs-value"><span class="hljs-string">"2019-07-22T00:00:00.000Z"</span></span>,
-              "<span class="hljs-attribute">seat_number</span>": <span class="hljs-value"><span class="hljs-number">13</span></span>,
-              "<span class="hljs-attribute">first_name</span>": <span class="hljs-value"><span class="hljs-string">"Jane"</span></span>,
-              "<span class="hljs-attribute">last_name</span>": <span class="hljs-value"><span class="hljs-string">"Doe"</span></span>,
-              "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"janedoe@gmail.com"</span>
-          </span>},
-          {
-              "<span class="hljs-attribute">booking_id</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
-              "<span class="hljs-attribute">user_id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
-              "<span class="hljs-attribute">trip_id</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
-              "<span class="hljs-attribute">bus_id</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
-              "<span class="hljs-attribute">trip_date</span>": <span class="hljs-value"><span class="hljs-string">"2019-07-10T00:00:00.000Z"</span></span>,
-              "<span class="hljs-attribute">seat_number</span>": <span class="hljs-value"><span class="hljs-number">8</span></span>,
-              "<span class="hljs-attribute">first_name</span>": <span class="hljs-value"><span class="hljs-string">"John"</span></span>,
-              "<span class="hljs-attribute">last_name</span>": <span class="hljs-value"><span class="hljs-string">"Doe"</span></span>,
-              "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"johndoe@gmail.com"</span>
-          </span>}
-  }
-</span></code></pre>
-</li>
-</ul>
-</li>
-</ul>
+<pre><code>+ Response <span class="hljs-number">200</span>
+
+            {
+                <span class="hljs-string">"status"</span>: <span class="hljs-string">"success"</span>,
+                <span class="hljs-string">"data"</span>: [
+                    {
+                        <span class="hljs-string">"booking_id"</span>: <span class="hljs-number">1</span>,
+                        <span class="hljs-string">"user_id"</span>: <span class="hljs-number">1</span>,
+                        <span class="hljs-string">"trip_id"</span>: <span class="hljs-number">1</span>,
+                        <span class="hljs-string">"bus_id"</span>: <span class="hljs-number">1</span>,
+                        <span class="hljs-string">"trip_date"</span>: <span class="hljs-string">"2019-07-30T00:00:00.000Z"</span>,
+                        <span class="hljs-string">"seat_number"</span>: <span class="hljs-number">27</span>,
+                        <span class="hljs-string">"first_name"</span>: <span class="hljs-string">"John"</span>,
+                        <span class="hljs-string">"last_name"</span>: <span class="hljs-string">"Doe"</span>,
+                        <span class="hljs-string">"email"</span>: <span class="hljs-string">"johndoe@gmail.com"</span>
+                    },
+                    {
+                        <span class="hljs-string">"booking_id"</span>: <span class="hljs-number">2</span>,
+                        <span class="hljs-string">"user_id"</span>: <span class="hljs-number">2</span>,
+                        <span class="hljs-string">"trip_id"</span>: <span class="hljs-number">2</span>,
+                        <span class="hljs-string">"bus_id"</span>: <span class="hljs-number">2</span>,
+                        <span class="hljs-string">"trip_date"</span>: <span class="hljs-string">"2019-07-22T00:00:00.000Z"</span>,
+                        <span class="hljs-string">"seat_number"</span>: <span class="hljs-number">13</span>,
+                        <span class="hljs-string">"first_name"</span>: <span class="hljs-string">"Jane"</span>,
+                        <span class="hljs-string">"last_name"</span>: <span class="hljs-string">"Doe"</span>,
+                        <span class="hljs-string">"email"</span>: <span class="hljs-string">"janedoe@gmail.com"</span>
+                    },
+                    {
+                        <span class="hljs-string">"booking_id"</span>: <span class="hljs-number">3</span>,
+                        <span class="hljs-string">"user_id"</span>: <span class="hljs-number">1</span>,
+                        <span class="hljs-string">"trip_id"</span>: <span class="hljs-number">3</span>,
+                        <span class="hljs-string">"bus_id"</span>: <span class="hljs-number">3</span>,
+                        <span class="hljs-string">"trip_date"</span>: <span class="hljs-string">"2019-07-10T00:00:00.000Z"</span>,
+                        <span class="hljs-string">"seat_number"</span>: <span class="hljs-number">8</span>,
+                        <span class="hljs-string">"first_name"</span>: <span class="hljs-string">"John"</span>,
+                        <span class="hljs-string">"last_name"</span>: <span class="hljs-string">"Doe"</span>,
+                        <span class="hljs-string">"email"</span>: <span class="hljs-string">"johndoe@gmail.com"</span>
+                    }
+            }</code></pre>
 <h3 id="header-delete-a-booking">Delete A Booking <a class="permalink" href="#header-delete-a-booking" aria-hidden="true">¶</a></h3>
 <p><code>DELETE /bookings/{booking_id}</code></p>
-<ul>
-<li>
-<p>Request (x-www-form-urlencoded)</p>
-<ul>
-<li>
-<p>Body</p>
-<pre><code>{
-      "<span class="hljs-attribute">booking_id</span>": <span class="hljs-value"><span class="hljs-number">6</span></span>,
-  }</code></pre>
-</li>
-</ul>
-</li>
-<li>
-<p>Response 200 (application/json)</p>
-<ul>
-<li>
-<p>Body</p>
-<pre><code>{
-      "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"success"</span></span>,
-      "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
-          "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"Booking deleted successfully"</span>
-      </span>}
-  </span>}</code></pre>
-</li>
-</ul>
-</li>
-</ul>
+<pre><code>+ Request
+            
+            {
+                <span class="hljs-string">"booking_id"</span>: <span class="hljs-number">6</span>,
+            }</code></pre>
+<pre><code>+ Valid Booking ID:
++ Response <span class="hljs-number">200</span>
+    
+            {
+                <span class="hljs-string">"status"</span>: <span class="hljs-string">"success"</span>,
+                <span class="hljs-string">"data"</span>: {
+                    <span class="hljs-string">"message"</span>: <span class="hljs-string">"Booking deleted successfully"</span>
+                }
+            }</code></pre>
+<pre><code>+ Invalid <span class="hljs-keyword">Booking </span>ID:
++ Response <span class="hljs-number">404</span>
+
+            {
+                <span class="hljs-string">"status"</span>: <span class="hljs-string">"error"</span>,
+                <span class="hljs-string">"error"</span>: <span class="hljs-string">"This booking has either been deleted or you do not have sufficient privileges"</span>
+            }</code></pre>
+<h3 id="header-license">License <a class="permalink" href="#header-license" aria-hidden="true">¶</a></h3>
+<pre><code>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to <span class="hljs-operator"><span class="hljs-keyword">use</span>, copy, <span class="hljs-keyword">modify</span>, <span class="hljs-keyword">merge</span>, publish, <span class="hljs-keyword">distribute</span>, sublicense, <span class="hljs-keyword">and</span>/<span class="hljs-keyword">or</span> sell copies <span class="hljs-keyword">of</span> the Software, <span class="hljs-keyword">and</span> <span class="hljs-keyword">to</span> permit persons <span class="hljs-keyword">to</span> whom the Software <span class="hljs-keyword">is</span> furnished <span class="hljs-keyword">to</span> <span class="hljs-keyword">do</span> so, subject <span class="hljs-keyword">to</span> the <span class="hljs-keyword">following</span> conditions:
+
+The above copyright <span class="hljs-keyword">notice</span> <span class="hljs-keyword">and</span> this permission <span class="hljs-keyword">notice</span> shall be included <span class="hljs-keyword">in</span> all copies <span class="hljs-keyword">or</span> substantial portions <span class="hljs-keyword">of</span> the Software.
+
+THE SOFTWARE <span class="hljs-keyword">IS</span> PROVIDED <span class="hljs-string">"AS IS"</span>, <span class="hljs-keyword">WITHOUT</span> WARRANTY <span class="hljs-keyword">OF</span> <span class="hljs-keyword">ANY</span> KIND, EXPRESS <span class="hljs-keyword">OR</span> IMPLIED, <span class="hljs-keyword">INCLUDING</span> BUT <span class="hljs-keyword">NOT</span> LIMITED <span class="hljs-keyword">TO</span> THE WARRANTIES <span class="hljs-keyword">OF</span> MERCHANTABILITY, FITNESS <span class="hljs-keyword">FOR</span> A PARTICULAR PURPOSE <span class="hljs-keyword">AND</span> NONINFRINGEMENT. <span class="hljs-keyword">IN</span> <span class="hljs-keyword">NO</span> <span class="hljs-keyword">EVENT</span> SHALL THE <span class="hljs-keyword">AUTHORS</span> <span class="hljs-keyword">OR</span> COPYRIGHT HOLDERS BE LIABLE <span class="hljs-keyword">FOR</span> <span class="hljs-keyword">ANY</span> CLAIM, DAMAGES <span class="hljs-keyword">OR</span> OTHER LIABILITY, WHETHER <span class="hljs-keyword">IN</span> AN <span class="hljs-keyword">ACTION</span> <span class="hljs-keyword">OF</span> CONTRACT, TORT <span class="hljs-keyword">OR</span> OTHERWISE, ARISING <span class="hljs-keyword">FROM</span>, <span class="hljs-keyword">OUT</span> <span class="hljs-keyword">OF</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">IN</span> <span class="hljs-keyword">CONNECTION</span> <span class="hljs-keyword">WITH</span> THE SOFTWARE <span class="hljs-keyword">OR</span> THE <span class="hljs-keyword">USE</span> <span class="hljs-keyword">OR</span> OTHER DEALINGS <span class="hljs-keyword">IN</span> THE SOFTWARE.
+</span></code></pre>
 </div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 16 Jul 2019</p><script>/* eslint-env browser */
 /* eslint quotes: [2, "single"] */
 'use strict';
