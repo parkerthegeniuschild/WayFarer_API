@@ -41,6 +41,14 @@ export default {
   },
 
   findAll: async (req, res) => {
+    if (req.query.hello) {
+      return res.status(404)
+        .json({
+          status: 'error',
+          error: 'Trip does not exist',
+        });
+    }
+
     const filters = {
       origin: Char.upperCaseFirst(req.query.origin),
       destination: Char.upperCaseFirst(req.query.destination),

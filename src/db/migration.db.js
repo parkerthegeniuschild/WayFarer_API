@@ -1,6 +1,7 @@
 import { config } from 'dotenv';
 import runnableExports from 'runnable-exports';
 import { Pool } from 'pg';
+import bcrypt from 'bcrypt';
 import logger from '../logs/winston';
 
 config();
@@ -21,12 +22,13 @@ const pool = new Pool({
   connectionTimeoutMillis: 2000,
 });
 
+
 const createDummyUsers = () => {
-  const query = 'INSERT INTO users(first_name, last_name, email, password, is_admin) '
-    + 'VALUES (\'John\', \'Doe\', \'johndoe@gmail.com\','
-    + ' \'$2b$10$.DxwEMitLPOSEeWCY5lF0OVobGRKcOEIvxZuEwkbDCGE6SJGSY/KG\', \'false\'),'
-    + ' (\'Jane\', \'Doe\', \'janedoe@gmail.com\','
-    + ' \'$2b$10$.DxwEMitLPOSEeWCY5lF0OVobGRKcOEIvxZuEwkbDCGE6SJGSY/KG\', \'true\')';
+  const password = bcrypt.hashSync('P@ssw0rd', 10);
+
+  const query = `INSERT INTO users(first_name, last_name, email, password, is_admin) 
+  VALUES ('John', 'Doe', 'johndoe@gmail.com', '${password}', 'false'), 
+  ('Jane', 'Doe', 'janedoe@gmail.com', '${password}', 'true')`;
 
   (async () => {
     const client = await pool.connect();

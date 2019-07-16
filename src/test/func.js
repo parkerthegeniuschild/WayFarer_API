@@ -14,8 +14,6 @@ const email = 'testemail@yahoo.com';
 const password = 'randompassword';
 const first_name = "Test";
 const last_name = 'User';
-const is_admin = true;
-
 
 describe('TEST FUNCTIONS', () => {
 

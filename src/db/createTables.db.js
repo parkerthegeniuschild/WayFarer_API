@@ -89,7 +89,7 @@ const createTripsTable = () => {
         bus_id INT REFERENCES buses(id) ON DELETE CASCADE,
         origin TEXT NOT NULL,
         destination TEXT NOT NULL,
-        trip_date DATE NOT NULL,
+        trip_date TEXT NOT NULL,
         fare FLOAT(2) NOT NULL,
         status VARCHAR(10) DEFAULT 'active'
       )`;

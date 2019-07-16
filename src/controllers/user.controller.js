@@ -1,5 +1,4 @@
 import { config } from 'dotenv';
-import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 import models from '../models/index.model';
@@ -25,7 +24,7 @@ export default {
       first_name,
       last_name,
       email,
-      password: await bcrypt.hashSync(password, 10),
+      password,
       is_admin,
     };
 
@@ -36,7 +35,7 @@ export default {
           return res.status(403)
             .json({
               status: 'error',
-              data: {
+              error: {
                 message: result.detail,
               },
             });
