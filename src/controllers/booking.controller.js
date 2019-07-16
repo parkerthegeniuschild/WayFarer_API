@@ -42,6 +42,8 @@ export default {
             .json({
               status: 'error',
               error: 'Booking error ... please try again later',
+              trip_id,
+              booking_id: null,
             });
         }
         return res.status(201)
@@ -68,7 +70,7 @@ export default {
         if (!result) {
           return res.status(200).json({
             status: 'success',
-            error: 'No bookings found',
+            data: 'No bookings found',
           });
         }
         return res.status(200).json({

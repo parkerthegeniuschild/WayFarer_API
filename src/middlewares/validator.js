@@ -1,6 +1,6 @@
 import validationHelpers from '../utilities/validationHelpers';
 import {
-  emailRegex, passwordRegex, busYearRegex, numberRegex,
+  emailRegex, busYearRegex, numberRegex,
 } from '../utilities/regexen';
 
 const { checkForEmptyFields, checkPatternedFields } = validationHelpers;
@@ -16,10 +16,10 @@ export default {
       errors.push(...checkForEmptyFields('First Name', first_name));
       errors.push(...checkForEmptyFields('Last Name', last_name));
       errors.push(...checkPatternedFields('Email Address', email, emailRegex));
-      errors.push(...checkPatternedFields('Password', password, passwordRegex));
+      errors.push(...checkForEmptyFields('Password', password));
     } else if (req.path.includes('signin')) {
       errors.push(...checkPatternedFields('Email Address', email, emailRegex));
-      errors.push(...checkPatternedFields('Password', password, passwordRegex));
+      errors.push(...checkForEmptyFields('Password', password));
     }
 
     if (errors.length) {
@@ -64,7 +64,7 @@ export default {
     } = req.body;
 
     if (req.path.includes('trips')) {
-      errors.push(...checkPatternedFields('Bus ID', bus_id, numberRegex));
+      errors.push(...checkForEmptyFields('Bus ID', bus_id, numberRegex));
       errors.push(...checkForEmptyFields('Origin', origin));
       errors.push(...checkForEmptyFields('Destination', destination));
       errors.push(...checkForEmptyFields('Trip Date', trip_date));
@@ -74,7 +74,7 @@ export default {
     if (errors.length) {
       return res.status(400).json({
         status: 'error',
-        message: errors,
+        error: errors,
       });
     }
     return next();

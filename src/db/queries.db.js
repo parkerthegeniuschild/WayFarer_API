@@ -38,8 +38,10 @@ const DBQueries = {
    */
   async createUser(user) {
     const {
-      email, password, first_name, last_name, is_admin,
+      email, first_name, last_name, is_admin,
     } = user;
+
+    const password = await bcrypt.hashSync(user.password, 10);
 
     const text = 'INSERT INTO users (email, first_name, last_name, password, is_admin) VALUES($1,'
       + ' $2, $3, $4, $5) RETURNING *';
@@ -193,7 +195,7 @@ const DBQueries = {
       const row = res.rows[0];
 
       return {
-        trip_id: row.id,
+        id: row.id,
         bus_id,
         origin,
         destination,
@@ -240,7 +242,7 @@ const DBQueries = {
         const row = res.rows[i];
 
         trips[i] = {
-          trip_id: row.id,
+          id: row.id,
           bus_id: row.bus_id,
           origin: row.origin,
           destination: row.destination,
@@ -329,7 +331,7 @@ const DBQueries = {
       const row = res.rows[0];
 
       return {
-        booking_id: id,
+        id,
         user_id: row.user_id,
         trip_id: row.trip_id,
         bus_id: row.bus_id,
